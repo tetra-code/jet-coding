@@ -12,8 +12,6 @@ export const RestaurantList = () => {
         ? <div className='restaurant-list-content grid'>
             {
                 restaurants.map((item, index) => {
-                    console.log(item)
-                    console.log(index)
                     return (
                         <Restaurant key={index} {...item} />
                     )
