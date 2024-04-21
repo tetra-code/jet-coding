@@ -3,6 +3,7 @@ import { useGlobalContext } from '../utils/context';
 import "./Toggle.css";
 
 
+// TODO: add icons to toggle switch
 const Toggle = () => {
     const {searchMode, setSearchMode} = useGlobalContext();
 
@@ -22,7 +23,8 @@ const Toggle = () => {
                     className="toggle"
                     onClick={searchModeSwitch}
                 />
-                <span className="slider round"></span>
+                <span className="slider round">
+                </span>
             </label>
         </div>
     )

@@ -36,7 +36,7 @@ const AppProvider = ({children}) => {
                     return {
                         id: id,
                         name: name,
-                        cuisines: cuisines,
+                        cuisines: cuisines.map((dict) => dict.name),
                         rating: rating,
                         address: address,
                         logoUrl: logoUrl,

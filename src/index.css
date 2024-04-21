@@ -64,3 +64,12 @@ body {
   margin: 0 auto;
   padding: 0 2rem;
 }
+
+.font-small {
+  font-size: 0.85rem;
+}
+
+.font-medium {
+  font-weight: 700;
+  font-size: 1.1rem;
+}

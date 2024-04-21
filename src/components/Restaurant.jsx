@@ -2,6 +2,9 @@ import React from 'react';
 import "./RestaurantList.css"
 import { CiCircleChevDown } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
+import { MdFastfood } from "react-icons/md";
+
 
 export const Restaurant = (restaurant) => {
     const mapAddressDictToString = (restaurantAddress) => {
@@ -9,39 +12,52 @@ export const Restaurant = (restaurant) => {
     }
 
     const mapCuisinesArrayToString = (restaurantCuisines) => {
-        return restaurantCuisines.map((dict) => dict.name).join(', ');
+        return restaurantCuisines
+            .filter(
+                (c) => c.toLowerCase() !== "collect stamps"
+                && c.toLowerCase() !== "deals"
+                && c.toLowerCase() !== "low delivery fee"
+                && c.toLowerCase() !== "freebies"
+            )
+            .join(", ")
     }
 
     return (
-        <div className='restaurant-item flex flex-column flex-sb'>
+        <div className='restaurant-item'>
+            {/*/!* Conditional rendering for the "deals" offer *!/*/}
+            {/*{restaurant.cuisines.includes("Deals") && (*/}
+            {/*    <div className='restaurant-item-deal'>*/}
+            {/*        <span>Deals Available!</span>*/}
+            {/*    </div>*/}
+            {/*)}*/}
             <div className='restaurant-item-logo'>
-                <img src={restaurant.logoUrl} alt="cover"/>
+                <img className='flex' src={restaurant.logoUrl} alt="cover"/>
             </div>
-            <div className='restaurant-item-info text-center'>
-                <div className='restaurant-item-info-item name'>
+            <div className='restaurant-item-info'>
+                <div className='restaurant-item-info-item name font-medium text-center'>
                     <span>{restaurant.name}</span>
                 </div>
 
-                <div className='restaurant-item-info-item address'>
-                    <span>Address: </span>
-                    <span>{mapAddressDictToString(restaurant.address)}</span>
+                <div>
+                    <span><FaLocationDot style={{ color: 'var(--black-color)' }}/>&nbsp;
+                        {mapAddressDictToString(restaurant.address)}</span>
                 </div>
 
-                <div className='restaurant-item-info-item rating'>
-                    <span><FaStar style={{ color: 'var(--orange-color)' }}/>&nbsp;
-                         {restaurant.rating.starRating} ({restaurant.rating.count})</span>
-                </div>
-
-                <div className='restaurant-item-info-item cuisine'>
-                    <span>Cuisines: </span>
-                    <span>{mapCuisinesArrayToString(restaurant.cuisines)}</span>
-                </div>
-
-                <div className='restaurant-item-info-item eta'>
-                    <span><CiCircleChevDown style={{ color: 'var(--black-color)' }}/>&nbsp;
+                <div>
+                    <span><FaStar style={{color: 'var(--orange-color)'}}/>&nbsp;
+                        <b>{restaurant.rating.starRating}</b></span>&nbsp;
+                    <span class="font-small">
+                         ({restaurant.rating.count})
+                    </span>&nbsp;&nbsp;&nbsp;
+                    <span><CiCircleChevDown style={{color: 'var(--black-color)'}}/>&nbsp;
                         {restaurant.availability.delivery.etaMinutes.rangeLower} ~
                         {restaurant.availability.delivery.etaMinutes.rangeUpper} min
                     </span>
+                </div>
+
+                <div>
+                    <span><MdFastfood style={{color: 'var(--orange-color)'}}/>&nbsp;
+                        {mapCuisinesArrayToString(restaurant.cuisines)}</span>
                 </div>
             </div>
         </div>
