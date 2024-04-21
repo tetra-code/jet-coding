@@ -12,14 +12,25 @@ const AppProvider = ({children}) => {
     const [resultTitle, setResultTitle] = useState("");
     const [searchMode, setSearchMode] = useState("delivery")
 
+    const filterAndSortRestaurant = (restaurantList) => {
+        return restaurantList
+            .filter((r) => r !== undefined &&
+                r.availability !== undefined &&
+                r.availability.delivery !== undefined &&
+                r.availability.delivery.etaMinutes !== undefined)
+            .filter((r) => r.availability.delivery.isOpen)
+            .sort((r1, r2) => r1.availability.delivery.etaMinutes.rangeLower -
+                r2.availability.delivery.etaMinutes.rangeLower);
+    }
+
     const fetchRestaurants = useCallback(async() => {
         try {
             const response = await fetch(`${proxyEndpoint}/${searchTerm}`);
             const data = await response.json();
-            const restaurantList = data['restaurants']
+            const restaurantList = data.restaurants
             if (restaurantList){
-                // TODO: sort restaurants based on delivery time (default)
-                const restaurants = restaurantList.slice(0, 10).map((singleRestaurant) => {
+                const processedRestaurants = filterAndSortRestaurant(restaurantList)
+                const restaurants = processedRestaurants.slice(0, 10).map((singleRestaurant) => {
                     const {id, name, cuisines , rating, address, logoUrl} = singleRestaurant;
                     return {
                         id: id,
@@ -30,6 +41,7 @@ const AppProvider = ({children}) => {
                         logoUrl: logoUrl
                     }
                 });
+
 
                 setRestaurants(restaurants);
 
