@@ -6,9 +6,10 @@ import {useGlobalContext} from "../utils/context.jsx";
 import "./RestaurantList.css";
 
 
-// TODO: Create (real) cuisine list above searches
 export const RestaurantList = () => {
     const {restaurants, resultTitle, searchTerm, searchMode} = useGlobalContext();
+
+    console.log("Restaurant list called again")
 
     if (searchTerm === "") return (
         <section className='restaurantList'>
@@ -19,22 +20,6 @@ export const RestaurantList = () => {
             </div>
         </section>
     )
-
-    // const getCuisinesFrequency = (restaurantList) => {
-    //     const allCuisinesList = restaurantList.map((r) => r.cuisines.map((c) => c.name))
-    //     const mergedArray = [].concat(...allCuisinesList);
-    //
-    //     const cuisineFrequencyMap = new Map();
-    //     mergedArray.forEach(cuisine => {
-    //         if (cuisineFrequencyMap.has(cuisine)) {
-    //             cuisineFrequencyMap.set(cuisine, cuisineFrequencyMap.get(cuisine) + 1);
-    //         } else {
-    //             cuisineFrequencyMap.set(cuisine, 1);
-    //         }
-    //     });
-    //     return cuisineFrequencyMap;
-    // }
-    // const cuisineFrequencyMap = getCuisinesFrequency(restaurants);
 
     const resultContent = searchMode === 'delivery'
         ? <div className='restaurant-list-content grid'>

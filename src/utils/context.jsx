@@ -11,9 +11,14 @@ const AppProvider = ({children}) => {
     const [restaurants, setRestaurants] = useState([]);
     const [resultTitle, setResultTitle] = useState("");
     const [searchMode, setSearchMode] = useState("delivery")
+    const [cuisineType, setCuisineType] = useState("")
 
     const filterAndSortRestaurant = (restaurantList) => {
-        return restaurantList
+        const cuisineSpecialRestaurant = cuisineType !== ""
+            ? restaurantList.filter((r) => r.cuisines.includes(cuisineType))
+            : restaurantList
+        setCuisineType("")
+        return cuisineSpecialRestaurant
             .filter((r) => r !== undefined &&
                 r.availability !== undefined &&
                 r.availability.delivery !== undefined &&
@@ -21,7 +26,7 @@ const AppProvider = ({children}) => {
             .filter((r) => r.availability.delivery.isOpen)
             .sort((r1, r2) => r1.availability.delivery.etaMinutes.rangeLower -
                 r2.availability.delivery.etaMinutes.rangeLower);
-    }
+    };
 
     const fetchRestaurants = useCallback(async() => {
         try {
@@ -65,7 +70,12 @@ const AppProvider = ({children}) => {
 
     return (
         <AppContext.Provider value = {{
-            restaurants, resultTitle, searchTerm, setSearchTerm, setResultTitle, searchMode, setSearchMode
+            restaurants,
+            resultTitle,
+            searchTerm, setSearchTerm,
+            setResultTitle,
+            searchMode, setSearchMode,
+            cuisineType, setCuisineType
         }}>
             {children}
         </AppContext.Provider>
