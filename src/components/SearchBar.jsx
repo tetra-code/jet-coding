@@ -12,7 +12,7 @@ const postCodeRegex = new RegExp(regexString);
 
 // TODO: bonus feature to show postcode suggestions as you type along
 const SearchBar = () => {
-    const {setSearchTerm, setResultTitle} = useGlobalContext();
+    const {setSearchTerm, setResultTitle, cuisineType, setCuisineType} = useGlobalContext();
     const searchTerm = useRef('');
     const navigate = useNavigate();
 
@@ -33,8 +33,12 @@ const SearchBar = () => {
         const trimmedSearchTerm = searchTerm.current.value.replaceAll(' ', '')
         if (trimmedSearchTerm.length <= 7 && postCodeRegex.test(trimmedSearchTerm)){
             setSearchTerm(trimmedSearchTerm);
+            // goes back to original search display, without cuisine type filters
+            if (cuisineType !== "") setCuisineType("")
         } else {
-            // setResultTitle("Not a valid UK postcode");
+            setResultTitle("Not a valid UK postcode");
+
+            // invoke fetchRestaurant to show empty result
             setSearchTerm("");
         }
         navigate("/restaurants");
