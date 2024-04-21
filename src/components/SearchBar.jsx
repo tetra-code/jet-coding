@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import "./SearchBar.css";
 
 
-
 let proxyEndpoint = `http://localhost:8080/api`
 const postcodeRegex = /^[A-Z]{1,2}[0-9]{1,2}[A-Z]{0,1} ?[0-9][A-Z]{2}$/i;
 
 
 // TODO: bonus feature to show postcode suggestions as you type along
-export const SearchBar = () => {
+const SearchBar = () => {
+    const navigate = useNavigate();
 
     // TODO: input validation to check whether valid postcode and no more than certain length
     const [searchTerm, setSearchTerm] = useState("");
@@ -63,20 +63,26 @@ export const SearchBar = () => {
         fetchRestaurants().then()
     };
 
+    navigate("/restaurants");
+
     return (
         <div className="container">
             <div className="search-bar-content">
                 <form className="search-bar">
-                    <FaSearch className="search-icon" size={20} onClick={handleIconClick}/>
-                    <input
-                        className="search-bar-input"
-                        placeholder="Type a valid UK postcode"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                    />
+                    <div className='search-form-elem flex flex-sb bg-white'>
+                        <FaSearch className="search-icon" size={20} onClick={handleIconClick}/>
+                        <input
+                            className="search-bar-input"
+                            placeholder="Type a valid UK postcode"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                        />
+                    </div>
                 </form>
             </div>
         </div>
     )
 }
+
+export default SearchBar

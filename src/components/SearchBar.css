@@ -1,0 +1,15 @@
+.search-bar{
+    width: 100%;
+    max-width: 680px;
+}
+.search-bar-elem{
+    padding: 1.4rem 2.8rem;
+    border-radius: 3.8rem;
+}
+.search-bar-elem .form-control{
+    font-size: 2rem;
+    padding: 0.6rem;
+}
+.search-bar-elem .form-control::placeholder{
+    opacity: 0.9;
+}
