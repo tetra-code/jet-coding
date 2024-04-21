@@ -35,19 +35,17 @@ export const Restaurant = (restaurant) => {
                 <img className='flex' src={restaurant.logoUrl} alt="cover"/>
             </div>
             <div className='restaurant-item-info'>
-                <div className='restaurant-item-info-item name font-medium text-center'>
+                <div className='restaurant-item-info-item font-medium text-center'>
                     <span>{restaurant.name}</span>
                 </div>
-
                 <div>
                     <span><FaLocationDot style={{ color: 'var(--black-color)' }}/>&nbsp;
                         {mapAddressDictToString(restaurant.address)}</span>
                 </div>
-
                 <div>
                     <span><FaStar style={{color: 'var(--orange-color)'}}/>&nbsp;
                         <b>{restaurant.rating.starRating}</b></span>&nbsp;
-                    <span class="font-small">
+                    <span className="font-small">
                          ({restaurant.rating.count})
                     </span>&nbsp;&nbsp;&nbsp;
                     <span><CiCircleChevDown style={{color: 'var(--black-color)'}}/>&nbsp;
