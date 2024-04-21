@@ -1,17 +1,24 @@
 import React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
-
-import Restaurant from "./Restaurant.jsx";
-import "./Restaurant.css";
+import Restaurant from "./Restaurant";
 import {useGlobalContext} from "../utils/context.jsx";
+import "./RestaurantList.css";
 
 
 export const RestaurantList = () => {
     const {restaurants, resultTitle, searchTerm, searchMode} = useGlobalContext();
 
     const resultContent = searchMode === 'delivery'
-        ? <div className='restaurantlist-content grid'>
-            Delivery restaurant list
+        ? <div className='restaurant-list-content grid'>
+            {
+                restaurants.map((item, index) => {
+                    console.log(item)
+                    console.log(index)
+                    return (
+                        <Restaurant key={index} {...item} />
+                    )
+                })
+            }
         </div>
         : <MapContainer center={[51.505, -0.09]} zoom={13} style={{height: "80vh", width: "60vw"}}>
             <TileLayer

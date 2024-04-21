@@ -19,13 +19,14 @@ const AppProvider = ({children}) => {
             const restaurantList = data['restaurants']
             if (restaurantList){
                 const restaurants = restaurantList.slice(0, 10).map((singleRestaurant) => {
-                    const {id, name, cuisine, rating, address} = singleRestaurant;
+                    const {id, name, cuisine, rating, address, logoUrl} = singleRestaurant;
                     return {
                         id: id,
                         name: name,
                         cuisine: cuisine,
                         rating: rating,
-                        address: address
+                        address: address,
+                        logoUrl: logoUrl
                     }
                 });
 

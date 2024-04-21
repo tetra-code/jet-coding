@@ -1,0 +1,26 @@
+.restaurant-list, .restaurant-details {
+    padding: 3rem 0;
+    background-color: var(--orange-color)
+}
+
+.restaurant-list-content {
+    gap: 3rem;
+}
+
+.restaurant-item {
+    padding: 3rem 2rem;
+    border-radius: 4px;
+    background-color: var(--white-color);
+    box-shadow: var(--light-black-color) 0px 1px 1px 0px;
+    transition: var(--transition);
+}
+
+.restaurant-item:hover {
+    box-shadow: var(--light-black-color) 0px 5px 10px 0px;
+}
+
+.restaurant-item-logo img {
+    max-width: 200px;
+    margin-right: auto;
+    margin-left: auto;
+}
