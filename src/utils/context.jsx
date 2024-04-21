@@ -5,20 +5,24 @@ const AppContext = React.createContext();
 
 let proxyEndpoint = `http://localhost:8080/api`
 
-// rerendered whenever its state or props change
+// re-rendered whenever its state or props change
 const AppProvider = ({children}) => {
-    console.log("App provider invokved")
     const [searchTerm, setSearchTerm] = useState("");
     const [restaurants, setRestaurants] = useState([]);
     const [resultTitle, setResultTitle] = useState("");
     const [searchMode, setSearchMode] = useState("delivery")
     const [cuisineType, setCuisineType] = useState("")
 
-    const filterAndSortRestaurant = (restaurantList) => {
+    const processRestaurants = (restaurantList) => {
+        const reducedCuisineDataRestaurants = restaurantList.map((r) => {
+            return {
+                ...r,
+                cuisines: r.cuisines.map((c) => c.name)
+            }
+        })
         const cuisineSpecialRestaurant = cuisineType !== ""
-            ? restaurantList.filter((r) => r.cuisines.includes(cuisineType))
-            : restaurantList
-        setCuisineType("")
+            ? reducedCuisineDataRestaurants.filter((r) => r.cuisines.includes(cuisineType))
+            : reducedCuisineDataRestaurants
         return cuisineSpecialRestaurant
             .filter((r) => r !== undefined &&
                 r.availability !== undefined &&
@@ -29,20 +33,22 @@ const AppProvider = ({children}) => {
                 r2.availability.delivery.etaMinutes.rangeLower);
     };
 
+    // ensures new instance of fetchRestaurant is called whenever it's created
     const fetchRestaurants = useCallback(async() => {
         try {
+            console.log("Fetch restaurants invoked")
             const response = await fetch(`${proxyEndpoint}/${searchTerm}`);
             const data = await response.json();
             const restaurantList = data.restaurants;
             if (restaurantList){
-                const processedRestaurants = filterAndSortRestaurant(restaurantList);
+                const processedRestaurants = processRestaurants(restaurantList);
                 const sliceHigh = Math.min(10, processedRestaurants.length);
                 const restaurants = processedRestaurants.slice(0, sliceHigh).map((singleRestaurant) => {
                     const {id, name, cuisines , rating, address, logoUrl, availability} = singleRestaurant;
                     return {
                         id: id,
                         name: name,
-                        cuisines: cuisines.map((dict) => dict.name),
+                        cuisines: cuisines,
                         rating: rating,
                         address: address,
                         logoUrl: logoUrl,
@@ -63,11 +69,12 @@ const AppProvider = ({children}) => {
         } catch(error){
             console.log(error);
         }
-    }, [searchTerm]);
+    }, [searchTerm, cuisineType]);     // ensure new instance fetchRestaurants is created whenever its depepdnesis changes
 
+    // ensures new instance of fetchRestaurant is called whenever it's created
     useEffect(() => {
         fetchRestaurants().then();
-    }, [searchTerm, fetchRestaurants]);
+    }, [searchTerm, cuisineType]);
 
     return (
         <AppContext.Provider value = {{
