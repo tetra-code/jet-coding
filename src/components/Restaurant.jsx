@@ -22,6 +22,7 @@ export const Restaurant = (restaurant) => {
             .join(", ")
     }
 
+    // TODO: show additional tags for deals, low delivery fee, freebies, and collect stamps
     return (
         <div className='restaurant-item'>
             {/*/!* Conditional rendering for the "deals" offer *!/*/}
