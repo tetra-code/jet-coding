@@ -27,10 +27,11 @@ const AppProvider = ({children}) => {
         try {
             const response = await fetch(`${proxyEndpoint}/${searchTerm}`);
             const data = await response.json();
-            const restaurantList = data.restaurants
+            const restaurantList = data.restaurants;
             if (restaurantList){
-                const processedRestaurants = filterAndSortRestaurant(restaurantList)
-                const restaurants = processedRestaurants.slice(0, 10).map((singleRestaurant) => {
+                const processedRestaurants = filterAndSortRestaurant(restaurantList);
+                const sliceHigh = Math.min(10, processedRestaurants.length);
+                const restaurants = processedRestaurants.slice(0, sliceHigh).map((singleRestaurant) => {
                     const {id, name, cuisines , rating, address, logoUrl} = singleRestaurant;
                     return {
                         id: id,
@@ -41,14 +42,12 @@ const AppProvider = ({children}) => {
                         logoUrl: logoUrl
                     }
                 });
-
-
                 setRestaurants(restaurants);
 
                 if (restaurants.length > 1){
                     setResultTitle("Your Search Result");
                 } else {
-                    setResultTitle("No Search Result Found!")
+                    setResultTitle("No Restaurants Available")
                 }
             } else {
                 setRestaurants([]);

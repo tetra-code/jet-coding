@@ -8,6 +8,15 @@ import "./RestaurantList.css";
 // TODO: Dynamically generate multiple restaurant lists based on number of popular cuisines
 export const RestaurantList = () => {
     const {restaurants, resultTitle, searchTerm, searchMode} = useGlobalContext();
+    if (searchTerm === "") return (
+        <section className='restaurantList'>
+            <div className='container'>
+                <div className='section-title'>
+                    <h2>{resultTitle}</h2>
+                </div>
+            </div>
+        </section>
+    )
 
     const resultContent = searchMode === 'delivery'
         ? <div className='restaurant-list-content grid'>

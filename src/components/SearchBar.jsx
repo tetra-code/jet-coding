@@ -5,7 +5,9 @@ import { useGlobalContext } from '../utils/context';
 import "./SearchBar.css";
 
 
-const postcodeRegex = /^[A-Z]{1,2}[0-9]{1,2}[A-Z]{0,1} ?[0-9][A-Z]{2}$/i;
+const regexString =
+    "([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\\s?[0-9][A-Za-z]{2})";
+const postCodeRegex = new RegExp(regexString);
 
 
 // TODO: bonus feature to show postcode suggestions as you type along
@@ -30,13 +32,12 @@ const SearchBar = () => {
 
         // remove white spaces
         const trimmedSearchTerm = searchTerm.current.value.replaceAll(' ', '')
-        console.log(trimmedSearchTerm)
-        if (postcodeRegex.test(trimmedSearchTerm)){
+        if (trimmedSearchTerm.length <= 7 && postCodeRegex.test(trimmedSearchTerm)){
             setSearchTerm(trimmedSearchTerm);
         } else {
             setResultTitle("Not a valid UK postcode");
+            setSearchTerm("");
         }
-        setSearchTerm(trimmedSearchTerm);
         navigate("/restaurants");
     };
 
