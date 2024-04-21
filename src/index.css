@@ -8,7 +8,8 @@ body {
 }
 
 :root{
-  --orange-color: #FFA500;
+  --light-orange-color: #FFA500;
+  --orange-color: #FF8100;
   --white-color: #fff;
   --black-color: #010101;
   --light-black-color: #717171;

@@ -1,6 +1,6 @@
-.restaurant-list, .restaurant-details {
+.restaurant-list {
     padding: 3rem 0;
-    background-color: var(--orange-color)
+    background-color: var(--white-color)
 }
 
 .restaurant-list-content {

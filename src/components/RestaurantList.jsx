@@ -6,8 +6,10 @@ import "./RestaurantList.css";
 
 
 // TODO: Dynamically generate multiple restaurant lists based on number of popular cuisines
+// TODO: should only be invoked when search is done
 export const RestaurantList = () => {
     const {restaurants, resultTitle, searchTerm, searchMode} = useGlobalContext();
+
     if (searchTerm === "") return (
         <section className='restaurantList'>
             <div className='container'>
@@ -17,6 +19,22 @@ export const RestaurantList = () => {
             </div>
         </section>
     )
+
+    // const getCuisinesFrequency = (restaurantList) => {
+    //     const allCuisinesList = restaurantList.map((r) => r.cuisines.map((c) => c.name))
+    //     const mergedArray = [].concat(...allCuisinesList);
+    //
+    //     const cuisineFrequencyMap = new Map();
+    //     mergedArray.forEach(cuisine => {
+    //         if (cuisineFrequencyMap.has(cuisine)) {
+    //             cuisineFrequencyMap.set(cuisine, cuisineFrequencyMap.get(cuisine) + 1);
+    //         } else {
+    //             cuisineFrequencyMap.set(cuisine, 1);
+    //         }
+    //     });
+    //     return cuisineFrequencyMap;
+    // }
+    // const cuisineFrequencyMap = getCuisinesFrequency(restaurants);
 
     const resultContent = searchMode === 'delivery'
         ? <div className='restaurant-list-content grid'>
@@ -36,7 +54,7 @@ export const RestaurantList = () => {
         </MapContainer>
 
     return (
-        <section className='restaurantList'>
+        <section className='restaurant-list'>
             <div className='container'>
                 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
                 <div className='section-title'>

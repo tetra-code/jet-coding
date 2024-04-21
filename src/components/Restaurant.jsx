@@ -37,6 +37,13 @@ export const Restaurant = (restaurant) => {
                     <span>Cuisines: </span>
                     <span>{mapCuisinesArrayToString(restaurant.cuisines)}</span>
                 </div>
+
+                <div className='restaurant-item-info-item eta'>
+                    <span>Delivery time: </span>
+                    <span>{restaurant.availability.delivery.etaMinutes.rangeLower} ~
+                        {restaurant.availability.delivery.etaMinutes.rangeUpper} minutes
+                    </span>
+                </div>
             </div>
         </div>
     )

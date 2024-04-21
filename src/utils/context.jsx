@@ -32,14 +32,15 @@ const AppProvider = ({children}) => {
                 const processedRestaurants = filterAndSortRestaurant(restaurantList);
                 const sliceHigh = Math.min(10, processedRestaurants.length);
                 const restaurants = processedRestaurants.slice(0, sliceHigh).map((singleRestaurant) => {
-                    const {id, name, cuisines , rating, address, logoUrl} = singleRestaurant;
+                    const {id, name, cuisines , rating, address, logoUrl, availability} = singleRestaurant;
                     return {
                         id: id,
                         name: name,
                         cuisines: cuisines,
                         rating: rating,
                         address: address,
-                        logoUrl: logoUrl
+                        logoUrl: logoUrl,
+                        availability: availability
                     }
                 });
                 setRestaurants(restaurants);

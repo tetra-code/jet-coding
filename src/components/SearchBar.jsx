@@ -12,7 +12,6 @@ const postCodeRegex = new RegExp(regexString);
 
 // TODO: bonus feature to show postcode suggestions as you type along
 const SearchBar = () => {
-    // TODO: input validation to check whether valid postcode and no more than certain length
     const {setSearchTerm, setResultTitle} = useGlobalContext();
     const searchTerm = useRef('');
     const navigate = useNavigate();
