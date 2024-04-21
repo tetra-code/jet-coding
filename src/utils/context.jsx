@@ -32,7 +32,7 @@ const AppProvider = ({children}) => {
 
                 setRestaurants(restaurants);
 
-                if(restaurants.length > 1){
+                if (restaurants.length > 1){
                     setResultTitle("Your Search Result");
                 } else {
                     setResultTitle("No Search Result Found!")
@@ -54,7 +54,7 @@ const AppProvider = ({children}) => {
 
     return (
         <AppContext.Provider value = {{
-            loading, restaurants, resultTitle, searchTerm, setSearchTerm
+            loading, restaurants, resultTitle, searchTerm, setSearchTerm, setResultTitle
         }}>
             {children}
         </AppContext.Provider>
