@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react'
+import React, {useCallback, useState} from 'react'
 import {FaSearch} from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import "./SearchBar.css";
@@ -72,7 +72,7 @@ const SearchBar = () => {
                     <FaSearch className="icon" size={32} onClick={handleSubmit}/>
                     <input
                         className="form-control"
-                        placeholder="Type a valid UK postcode"
+                        placeholder="Type a UK postcode"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         onKeyDown={handleKeyDown}
