@@ -9,8 +9,6 @@ import "./RestaurantList.css";
 export const RestaurantList = () => {
     const {restaurants, resultTitle, searchTerm, searchMode} = useGlobalContext();
 
-    console.log("Restaurant list called again")
-
     if (searchTerm === "") return (
         <section className='restaurantList'>
             <div className='container'>
