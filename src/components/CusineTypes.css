@@ -1,0 +1,60 @@
+.cuisine-types {
+    grid-template-columns: repeat(10, 1fr);
+}
+
+.cuisine-type-item {
+    padding: 1rem 1rem;
+    width: 6rem;
+    height: 5rem;
+    /*background-color: var(--white-color);*/
+    line-height: 2;
+}
+
+.cuisine-type-icon {
+    width: 6rem;
+    height: 4rem;
+}
+
+.cuisine-type-icon:hover {
+    cursor: pointer;
+}
+
+.hamburger-icon {
+    background: url("../../public/icons/hamburger.webp") center/cover no-repeat;
+}
+
+.chicken-icon {
+    background: url("../../public/icons/chicken.webp") center/cover no-repeat;
+}
+
+.greek-icon {
+    background: url("../../public/icons/greek.webp") center/cover no-repeat;
+}
+
+.chinese-icon {
+    background: url("../../public/icons/chinese.png") center/cover no-repeat;
+}
+
+.kebab-icon {
+    background: url("../../public/icons/kebab.png") center/cover no-repeat;
+}
+
+.hamburger-icon {
+    background: url("../../public/icons/hamburger.webp") center/cover no-repeat;
+}
+
+.sushi-icon {
+    background: url("../../public/icons/sushi.png") center/cover no-repeat;
+}
+
+.pizza-icon {
+    background: url("../../public/icons/pizza.png") center/cover no-repeat;
+}
+
+.grocery-icon {
+    background: url("../../public/icons/grocery.jpg") center/cover no-repeat;
+}
+
+.indian-icon {
+    background: url("../../public/icons/indian.webp") center/cover no-repeat;
+}

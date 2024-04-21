@@ -1,9 +1,9 @@
 import React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
-import Restaurant from "./Restaurant";
+import CuisineTypes from './CuisineTypes'
+import {Restaurant} from './Restaurant'
 import {useGlobalContext} from "../utils/context.jsx";
 import "./RestaurantList.css";
-
 
 
 // TODO: Create (real) cuisine list above searches
@@ -46,17 +46,20 @@ export const RestaurantList = () => {
                 })
             }
         </div>
-        : <MapContainer center={[51.505, -0.09]} zoom={13} style={{height: "80vh", width: "60vw"}}>
-            <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
-        </MapContainer>
+        : <div>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+            <MapContainer center={[51.505, -0.09]} zoom={13} style={{height: "80vh", width: "60vw"}}>
+                <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                />
+            </MapContainer>
+        </div>
 
     return (
         <section className='restaurant-list'>
             <div className='container'>
-                <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+                <CuisineTypes />
                 <div className='section-title'>
                     <h2>{resultTitle}</h2>
                 </div>
