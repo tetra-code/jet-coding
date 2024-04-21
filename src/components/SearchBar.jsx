@@ -34,7 +34,7 @@ const SearchBar = () => {
         if (trimmedSearchTerm.length <= 7 && postCodeRegex.test(trimmedSearchTerm)){
             setSearchTerm(trimmedSearchTerm);
         } else {
-            setResultTitle("Not a valid UK postcode");
+            // setResultTitle("Not a valid UK postcode");
             setSearchTerm("");
         }
         navigate("/restaurants");

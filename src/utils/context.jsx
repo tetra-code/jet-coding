@@ -5,8 +5,9 @@ const AppContext = React.createContext();
 
 let proxyEndpoint = `http://localhost:8080/api`
 
-
+// rerendered whenever its state or props change
 const AppProvider = ({children}) => {
+    console.log("App provider invokved")
     const [searchTerm, setSearchTerm] = useState("");
     const [restaurants, setRestaurants] = useState([]);
     const [resultTitle, setResultTitle] = useState("");
