@@ -9,11 +9,9 @@ let proxyEndpoint = `http://localhost:8080/api`
 const AppProvider = ({children}) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [restaurants, setRestaurants] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [resultTitle, setResultTitle] = useState("");
 
     const fetchRestaurants = useCallback(async() => {
-        setLoading(true);
         try {
             const response = await fetch(`${proxyEndpoint}/${searchTerm}`);
             const data = await response.json();
@@ -41,10 +39,8 @@ const AppProvider = ({children}) => {
                 setRestaurants([]);
                 setResultTitle("No Search Result Found!");
             }
-            setLoading(false);
         } catch(error){
             console.log(error);
-            setLoading(false);
         }
     }, [searchTerm]);
 
@@ -54,7 +50,7 @@ const AppProvider = ({children}) => {
 
     return (
         <AppContext.Provider value = {{
-            loading, restaurants, resultTitle, searchTerm, setSearchTerm, setResultTitle
+            restaurants, resultTitle, searchTerm, setSearchTerm, setResultTitle
         }}>
             {children}
         </AppContext.Provider>
