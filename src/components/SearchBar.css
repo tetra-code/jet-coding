@@ -1,15 +1,22 @@
-.search-bar{
+.search-form{
     width: 100%;
     max-width: 680px;
 }
-.search-bar-elem{
-    padding: 1.4rem 2.8rem;
+
+.search-form-elem{
+    padding: 1rem 2rem;
     border-radius: 3.8rem;
+    border: none;
 }
-.search-bar-elem .form-control{
+
+.form-control{
     font-size: 2rem;
-    padding: 0.6rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    outline: none;
+    border: none;
 }
-.search-bar-elem .form-control::placeholder{
-    opacity: 0.9;
+
+.form-control::placeholder{
+    opacity: 0.3;
 }

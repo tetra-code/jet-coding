@@ -1,13 +1,60 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root{
+  --orange-color: #FFA500;
+  --white-color: #fff;
+  --black-color: #010101;
+  --light-black-color: #717171;
+  --transition: all 300ms ease-in-out;
+}
+
+.icon {
+  color: var(--orange-color);
+}
+
+.icon:hover {
+  cursor: pointer;
+  color: #f2f735; /* Change the color to your preference */
+}
+
+/* backgrounds */
+.bg-orange{background-color: var(--orange-color);}
+.bg-white{background-color: var(--white-color);}
+
+/* text */
+.text-black{color: var(--black-color);}
+.text-white{color: var(--white-color);}
+.text-light-black{color: var(--light-black-color);}
+.text-uppercase{text-transform: uppercase;}
+.text-center{text-align: center;}
+.text-capitalize{text-transform: capitalize;}
+.text-italic{font-style: italic;}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+.flex-column {
+  flex-direction: column;
+}
+.flex-sb {
+  justify-content: space-between;
+}
+.flex-c {
+  justify-content: center;
+}
+.grid {
+  display: grid;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }

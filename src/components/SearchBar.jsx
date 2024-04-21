@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useRef, useState} from 'react'
 import {FaSearch} from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import "./SearchBar.css";
@@ -56,30 +56,28 @@ const SearchBar = () => {
 
 
     const handleKeyDown = (e) => {
+        if (e.key === 'Enter') fetchRestaurants().then()
+    };
+
+    const handleSubmit = () => {
         fetchRestaurants().then()
     };
 
-    const handleIconClick = () => {
-        fetchRestaurants().then()
-    };
-
-    navigate("/restaurants");
+    // navigate("/restaurants");
 
     return (
-        <div className="container">
-            <div className="search-bar-content">
-                <form className="search-bar">
-                    <div className='search-form-elem flex flex-sb bg-white'>
-                        <FaSearch className="search-icon" size={20} onClick={handleIconClick}/>
-                        <input
-                            className="search-bar-input"
-                            placeholder="Type a valid UK postcode"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            onKeyDown={handleKeyDown}
-                        />
-                    </div>
-                </form>
+        <div className='search-form'>
+            <div className='container'>
+                <div className='search-form-elem flex flex-c bg-white'>
+                    <FaSearch className="icon" size={32} onClick={handleSubmit}/>
+                    <input
+                        className="form-control"
+                        placeholder="Type a valid UK postcode"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                    />
+                </div>
             </div>
         </div>
     )
