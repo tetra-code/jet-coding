@@ -29,7 +29,7 @@ const SearchBar = () => {
         e.preventDefault();
 
         // remove white spaces
-        const trimmedSearchTerm = searchTerm.current.value.trim();
+        const trimmedSearchTerm = searchTerm.current.value.replaceAll(' ', '')
         console.log(trimmedSearchTerm)
         if (postcodeRegex.test(trimmedSearchTerm)){
             setSearchTerm(trimmedSearchTerm);
@@ -49,7 +49,6 @@ const SearchBar = () => {
                         className="form-control"
                         placeholder="Type a UK postcode"
                         ref = {searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
                         onKeyDown={handleKeyDown}
                     />
                 </div>
