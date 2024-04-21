@@ -48,7 +48,7 @@
     }
 
     .restaurant-item-logo img {
-        maxWidth: 600px;
+        max-width: 600px;
         margin-right: auto;
         margin-left: auto;
     }
@@ -60,7 +60,7 @@
     }
 
     .restaurant-item-logo img {
-        maxWidth: 600px;
+        max-width: 600px;
         margin-right: auto;
         margin-left: auto;
     }
