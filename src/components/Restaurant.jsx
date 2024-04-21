@@ -1,6 +1,7 @@
 import React from 'react';
 import "./RestaurantList.css"
-
+import { CiCircleChevDown } from "react-icons/ci";
+import { FaStar } from "react-icons/fa";
 
 export const Restaurant = (restaurant) => {
     const mapAddressDictToString = (restaurantAddress) => {
@@ -18,7 +19,6 @@ export const Restaurant = (restaurant) => {
             </div>
             <div className='restaurant-item-info text-center'>
                 <div className='restaurant-item-info-item name'>
-                    <span>Name: </span>
                     <span>{restaurant.name}</span>
                 </div>
 
@@ -28,9 +28,8 @@ export const Restaurant = (restaurant) => {
                 </div>
 
                 <div className='restaurant-item-info-item rating'>
-                    <span>Rating: </span>
-                    <span>{restaurant.rating.starRating} </span>
-                    <span>({restaurant.rating.count})</span>
+                    <span><FaStar style={{ color: 'var(--orange-color)' }}/>&nbsp;
+                         {restaurant.rating.starRating} ({restaurant.rating.count})</span>
                 </div>
 
                 <div className='restaurant-item-info-item cuisine'>
@@ -39,9 +38,9 @@ export const Restaurant = (restaurant) => {
                 </div>
 
                 <div className='restaurant-item-info-item eta'>
-                    <span>Delivery time: </span>
-                    <span>{restaurant.availability.delivery.etaMinutes.rangeLower} ~
-                        {restaurant.availability.delivery.etaMinutes.rangeUpper} minutes
+                    <span><CiCircleChevDown style={{ color: 'var(--black-color)' }}/>&nbsp;
+                        {restaurant.availability.delivery.etaMinutes.rangeLower} ~
+                        {restaurant.availability.delivery.etaMinutes.rangeUpper} min
                     </span>
                 </div>
             </div>
