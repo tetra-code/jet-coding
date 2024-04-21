@@ -10,6 +10,7 @@ const AppProvider = ({children}) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [restaurants, setRestaurants] = useState([]);
     const [resultTitle, setResultTitle] = useState("");
+    const [searchMode, setSearchMode] = useState("delivery")
 
     const fetchRestaurants = useCallback(async() => {
         try {
@@ -50,7 +51,7 @@ const AppProvider = ({children}) => {
 
     return (
         <AppContext.Provider value = {{
-            restaurants, resultTitle, searchTerm, setSearchTerm, setResultTitle
+            restaurants, resultTitle, searchTerm, setSearchTerm, setResultTitle, searchMode, setSearchMode
         }}>
             {children}
         </AppContext.Provider>

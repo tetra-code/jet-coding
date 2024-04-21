@@ -31,11 +31,11 @@ const SearchBar = () => {
         // remove white spaces
         const trimmedSearchTerm = searchTerm.current.value.replaceAll(' ', '')
         console.log(trimmedSearchTerm)
-        // if (postcodeRegex.test(trimmedSearchTerm)){
-        //     setSearchTerm(trimmedSearchTerm);
-        // } else {
-        //     setResultTitle("Not a valid UK postcode");
-        // }
+        if (postcodeRegex.test(trimmedSearchTerm)){
+            setSearchTerm(trimmedSearchTerm);
+        } else {
+            setResultTitle("Not a valid UK postcode");
+        }
         setSearchTerm(trimmedSearchTerm);
         navigate("/restaurants");
     };

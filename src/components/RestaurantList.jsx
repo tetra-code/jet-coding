@@ -7,11 +7,11 @@ import {useGlobalContext} from "../utils/context.jsx";
 
 
 export const RestaurantList = () => {
-    const {restaurants, resultTitle, searchTerm} = useGlobalContext();
+    const {restaurants, resultTitle, searchTerm, searchMode} = useGlobalContext();
 
-    let resultContent = searchTerm === 'delivery'
+    const resultContent = searchMode === 'delivery'
         ? <div className='restaurantlist-content grid'>
-            Restaurant list
+            Delivery restaurant list
         </div>
         : <MapContainer center={[51.505, -0.09]} zoom={13} style={{height: "80vh", width: "60vw"}}>
             <TileLayer

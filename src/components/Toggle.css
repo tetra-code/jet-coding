@@ -1,0 +1,53 @@
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 34px;
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 100px;
+}
+
+.slider.round:before {
+    border-radius: 100px;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    /*content: "after";*/
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--orange-color);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 46px;
+    left: 6px;
+    bottom: 4px;
+    -webkit-transition: .4s;
+    transition: .4s;
+    background: var(--white-color);
+    /*content: url('../../public/delivery-icon.jpg');*/
+}
+
+input:checked + .slider {
+    background-color: var(--orange-color);
+    /*content: url('../../public/pickup-icon.jpg');*/
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(42px);
+    -ms-transform: translateX(42px);
+    transform: translateX(42px);
+}
+
