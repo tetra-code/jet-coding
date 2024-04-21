@@ -24,3 +24,27 @@
     margin-right: auto;
     margin-left: auto;
 }
+
+@media screen and (min-width: 600px) {
+    .restaurant-list-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .restaurant-list-content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .restaurant-item-logo img {
+        max-width: 150px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .restaurant-list-content {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .restaurant-item-logo img {
+        max-width: 120px;
+    }
+}
