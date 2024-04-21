@@ -18,12 +18,13 @@ const AppProvider = ({children}) => {
             const data = await response.json();
             const restaurantList = data['restaurants']
             if (restaurantList){
+                // TODO: sort restaurants based on delivery time (default)
                 const restaurants = restaurantList.slice(0, 10).map((singleRestaurant) => {
-                    const {id, name, cuisine, rating, address, logoUrl} = singleRestaurant;
+                    const {id, name, cuisines , rating, address, logoUrl} = singleRestaurant;
                     return {
                         id: id,
                         name: name,
-                        cuisine: cuisine,
+                        cuisines: cuisines,
                         rating: rating,
                         address: address,
                         logoUrl: logoUrl

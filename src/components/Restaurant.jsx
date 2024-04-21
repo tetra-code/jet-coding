@@ -3,8 +3,12 @@ import "./RestaurantList.css"
 
 
 export const Restaurant = (restaurant) => {
-    const mapAddressDictToString = (restaurant) => {
-        return restaurant.address.firstLine + ", " + restaurant.address.postalCode + ", " + restaurant.address.city;
+    const mapAddressDictToString = (restaurantAddress) => {
+        return restaurantAddress.firstLine + ", " + restaurantAddress.postalCode + ", " + restaurantAddress.city;
+    }
+
+    const mapCuisinesArrayToString = (restaurantCuisines) => {
+        return restaurantCuisines.map((dict) => dict.name).join(', ');
     }
 
     return (
@@ -20,7 +24,7 @@ export const Restaurant = (restaurant) => {
 
                 <div className='restaurant-item-info-item address'>
                     <span>Address: </span>
-                    <span>{mapAddressDictToString(restaurant)}</span>
+                    <span>{mapAddressDictToString(restaurant.address)}</span>
                 </div>
 
                 <div className='restaurant-item-info-item rating'>
@@ -30,8 +34,8 @@ export const Restaurant = (restaurant) => {
                 </div>
 
                 <div className='restaurant-item-info-item cuisine'>
-                    <span>Cuisine: </span>
-                    <span>{restaurant.cuisine}</span>
+                    <span>Cuisines: </span>
+                    <span>{mapCuisinesArrayToString(restaurant.cuisines)}</span>
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ import {useGlobalContext} from "../utils/context.jsx";
 import "./RestaurantList.css";
 
 
+// TODO: Dynamically generate multiple restaurant lists based on number of popular cuisines
 export const RestaurantList = () => {
     const {restaurants, resultTitle, searchTerm, searchMode} = useGlobalContext();
 
