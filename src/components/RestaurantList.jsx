@@ -4,13 +4,16 @@ import CuisineTypes from './CuisineTypes'
 import {Restaurant} from './Restaurant'
 import {useGlobalContext} from "../utils/context.jsx";
 import {SetCenterOnNewSearch} from "./SetCenterOnNewSearch";
+import DefaultIcon from "./LeafletMarker";
 import "./RestaurantList.css";
 
 
 export const RestaurantList = () => {
     const {restaurants, resultTitle, searchTerm, searchMode, postCodeResult} = useGlobalContext();
 
-    const newCenter = restaurants.length > 0 ? [postCodeResult.latitude, postCodeResult.longitude] : [51.505, -0.09];
+    const newCenter = restaurants.length > 0
+        ? [postCodeResult.latitude, postCodeResult.longitude]
+        : [51.505, -0.09];
 
     if (searchTerm === "") return (
         <section className='restaurantList'>
@@ -26,9 +29,9 @@ export const RestaurantList = () => {
     const resultContent = searchMode === 'delivery'
         ? <div data-testid='delivery-mode-result' className='restaurant-list-content grid'>
             {
-                restaurants.map((item, index) => {
+                restaurants.map((restaurant, index) => {
                     return (
-                        <Restaurant data-testid='restaurant' key={index} {...item} />
+                        <Restaurant data-testid='restaurant' key={index} {...restaurant} />
                     )
                 })
             }
@@ -36,18 +39,25 @@ export const RestaurantList = () => {
         : <div data-testid='pickup-mode-result' >
             <MapContainer
                 center={[51.505, -0.09]}
-                zoom={20}
+                zoom={14}
                 style={{height: "80vh", width: "60vw"}}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
                 <SetCenterOnNewSearch coords={newCenter} />
-                {/*<Marker position={[51.505, -0.09]}>*/}
-                {/*    <Popup>*/}
-                {/*        A pretty CSS3 popup. <br /> Easily customizable.*/}
-                {/*    </Popup>*/}
-                {/*</Marker>*/}
+                {
+                    restaurants.map((restaurant, index) => {
+                        const coordinates = restaurant.address.location.coordinates
+                        return (
+                            <Marker key={index} position={[coordinates[1], coordinates[0]]} icon={DefaultIcon}>
+                                <Popup>
+                                    A pretty CSS3 popup. <br /> Easily customizable.
+                                </Popup>
+                            </Marker>
+                        )
+                    })
+                }
             </MapContainer>
         </div>
 
