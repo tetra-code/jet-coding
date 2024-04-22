@@ -20,16 +20,16 @@ export const RestaurantList = () => {
     )
 
     const resultContent = searchMode === 'delivery'
-        ? <div className='restaurant-list-content grid'>
+        ? <div data-testid='delivery-mode-result' className='restaurant-list-content grid'>
             {
                 restaurants.map((item, index) => {
                     return (
-                        <Restaurant key={index} {...item} />
+                        <Restaurant data-testid='restaurant' key={index} {...item} />
                     )
                 })
             }
         </div>
-        : <div>
+        : <div data-testid='pickup-mode-result' >
             <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
             <MapContainer center={[51.505, -0.09]} zoom={13} style={{height: "80vh", width: "60vw"}}>
                 <TileLayer
