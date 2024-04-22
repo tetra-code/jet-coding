@@ -5,7 +5,7 @@ import Home from './pages/Home'
 import { AppProvider } from './utils/context';
 import { RestaurantList } from "./components/RestaurantList";
 import './index.css';
-
+import 'leaflet/dist/leaflet.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

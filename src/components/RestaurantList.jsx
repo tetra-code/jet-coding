@@ -1,13 +1,16 @@
 import React from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
 import CuisineTypes from './CuisineTypes'
 import {Restaurant} from './Restaurant'
 import {useGlobalContext} from "../utils/context.jsx";
+import {SetCenterOnNewSearch} from "./SetCenterOnNewSearch";
 import "./RestaurantList.css";
 
 
 export const RestaurantList = () => {
     const {restaurants, resultTitle, searchTerm, searchMode, postCodeResult} = useGlobalContext();
+
+    const newCenter = restaurants.length > 0 ? [postCodeResult.latitude, postCodeResult.longitude] : [51.505, -0.09];
 
     if (searchTerm === "") return (
         <section className='restaurantList'>
@@ -31,20 +34,25 @@ export const RestaurantList = () => {
             }
         </div>
         : <div data-testid='pickup-mode-result' >
-            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
             <MapContainer
-                center={[postCodeResult.latitude, postCodeResult.longitude]}
+                center={[51.505, -0.09]}
                 zoom={20}
                 style={{height: "80vh", width: "60vw"}}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
+                <SetCenterOnNewSearch coords={newCenter} />
+                {/*<Marker position={[51.505, -0.09]}>*/}
+                {/*    <Popup>*/}
+                {/*        A pretty CSS3 popup. <br /> Easily customizable.*/}
+                {/*    </Popup>*/}
+                {/*</Marker>*/}
             </MapContainer>
         </div>
 
     // TODO: figure out why it is being invoked twice for one click
-    console.log("Invoked again")
+    // console.log("Invoked again")
 
     return (
         <section className='restaurant-list'>

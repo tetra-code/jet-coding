@@ -16,9 +16,9 @@ const AppProvider = ({children}) => {
     const [postCodeResult, setPostCodeResult] = useState(null);
 
     // ensures new instance of fetchRestaurant is called whenever it's created
+    console.log("Fetch is called again")
     const fetchRestaurants = useCallback(async() => {
         try {
-            // console.log("Fetch restaurants invoked")
             const response = await fetch(`${proxyEndpoint}/${searchTerm}`);
             const data = await response.json();
             const restaurantList = data.restaurants;
