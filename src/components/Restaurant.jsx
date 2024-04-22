@@ -59,11 +59,11 @@ export const Restaurant = (restaurant) => {
     }
 
     return (
-        <div data-testid="restaurant" className='restaurant-item'>
-            <div className='restaurant-item-logo'>
+        <div data-testid="restaurant" className='restaurant-item pickup-mode'>
+            <div className='restaurant-item-logo pickup-element'>
                 <img className='flex' src={restaurant.logoUrl} alt="cover" data-testid="restaurant-logo"/>
             </div>
-            <div className='restaurant-item-info'>
+            <div className='restaurant-item-info pickup-element'>
                 <div className='restaurant-item-info-item font-medium'>
                     <span data-testid="restaurant-name">{restaurant.name}</span>
                 </div>

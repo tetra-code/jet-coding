@@ -13,6 +13,7 @@ body {
   --white-color: #fff;
   --black-color: #010101;
   --light-black-color: #717171;
+  --light-grey-color: #F5F5F5;
   --transition: all 300ms ease-in-out;
 }
 
@@ -59,7 +60,7 @@ body {
 }
 
 .container {
-  max-width: 1300px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 0 2rem;
 }

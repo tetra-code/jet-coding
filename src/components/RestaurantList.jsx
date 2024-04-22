@@ -2,8 +2,9 @@ import React from 'react';
 import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
 import CuisineTypes from './CuisineTypes'
 import {Restaurant} from './Restaurant'
-import {useGlobalContext} from "../utils/context.jsx";
+import {useGlobalContext} from "../utils/context";
 import {SetCenterOnNewSearch} from "./SetCenterOnNewSearch";
+import {getRestaurantAddrAsString} from "../utils/util"
 import DefaultIcon from "./LeafletMarker";
 import "./RestaurantList.css";
 
@@ -36,7 +37,7 @@ export const RestaurantList = () => {
                 })
             }
         </div>
-        : <div data-testid='pickup-mode-result'>
+        : <div data-testid='pickup-mode-result' className='pickup-mode-container'>
             <div className='restaurant-list-content nav'>
                 {
                     restaurants.map((restaurant, index) => {
@@ -47,9 +48,10 @@ export const RestaurantList = () => {
                 }
             </div>
             <MapContainer
+                class='map-container'
                 center={[51.505, -0.09]}
                 zoom={14}
-                style={{height: "80vh", width: "60vw"}}>
+                style={{height: "110vh", width: "55vw"}}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -60,9 +62,10 @@ export const RestaurantList = () => {
                         const coordinates = restaurant.address.location.coordinates
                         return (
                             <Marker key={index} position={[coordinates[1], coordinates[0]]} icon={DefaultIcon}>
-                                {/*<Popup>*/}
-                                {/*    <Restaurant data-testid='restaurant' key={index} {...restaurant} />*/}
-                                {/*</Popup>*/}
+                                <Popup>
+                                    <strong>{restaurant.name}</strong><br/>
+                                    {getRestaurantAddrAsString(restaurant.address)}
+                                </Popup>
                             </Marker>
                         )
                     })

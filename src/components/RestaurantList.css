@@ -1,3 +1,18 @@
+/*nav mode */
+.pickup-mode-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav {
+    display: inline-block;
+}
+
+.map-container {
+    display: inline-block;
+}
+
+/* Restaurant list */
 .restaurant-list {
     padding: 3rem 0;
     background-color: var(--white-color)
@@ -7,6 +22,7 @@
     gap: 2rem;
 }
 
+/* Restaurant item */
 .restaurant-item {
     padding: 2rem 1.5rem;
     height: 18rem;
@@ -31,17 +47,34 @@
     font-size: 0.95rem;
 }
 
-.restaurant-item-deal {
-    background-color: var(--orange-color);
-    border-radius:  0 15px 15px 0;
-    padding: 6px;
+/* Restaurant list for pickup mode */
+.pickup-mode {
+    padding: 2rem 1.5rem;
+    height: 80px;
+    width: 330px;
+    border-radius: 4px;
+    background-color: var(--white-color);
+    box-shadow: var(--light-black-color) 0px 1px 1px 0px;
+    transition: var(--transition);
+    display: flex;
+    border: 1px solid grey;
 }
 
-/* nav mode */
-.nav {
-    width: 300px;
-    height: 100px;
+.pickup-mode:hover {
+    background-color: var(--light-grey-color);
 }
+
+.pickup-element {
+    width: 400px;
+    line-height: 1.5;
+    font-size: 12px;
+}
+
+/*.restaurant-item-deal {*/
+/*    background-color: var(--orange-color);*/
+/*    border-radius:  0 15px 15px 0;*/
+/*    padding: 6px;*/
+/*}*/
 
 @media screen and (min-width: 750px) {
     .restaurant-list-content {
@@ -58,6 +91,12 @@
         margin-right: auto;
         margin-left: auto;
     }
+
+    .pickup-element {
+        width: 300px;
+        line-height: 1.5;
+        font-size: 12px;
+    }
 }
 
 @media screen and (min-width: 992px) {
@@ -69,5 +108,11 @@
         max-width: 600px;
         margin-right: auto;
         margin-left: auto;
+    }
+
+    .pickup-element {
+        width: 300px;
+        line-height: 1.5;
+        font-size: 12px;
     }
 }
