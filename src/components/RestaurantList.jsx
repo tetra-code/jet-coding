@@ -27,6 +27,8 @@ export const RestaurantList = () => {
     )
 
     // TODO: perhaps loading state
+
+    // TODO: highlight maps marker when hover over item and other way around
     const resultContent = searchMode === 'delivery'
         ? <div data-testid='delivery-mode-result' className='restaurant-list-content grid'>
             {

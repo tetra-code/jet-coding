@@ -1,10 +1,13 @@
 /*  Receives list of unprocessed restaurant data from the API call.
+
     First reduces cuisine dict attribute of each restaurant to a list of cuisine names.
     Then filers out restaurants that don't include the specified cuisine type.
     Additional filtering for restaurants that don't specify its availability nor delivery time.
-    Finally, sorts the restaurants by their earliest delivery time.
+
+    If delivery mode, filter out restaurants not open for delivery and sort based on delivery lower range.
+    Else, filter out restaurants not open for collection (pickup) and sort based on distance.
 */
-export const processRestaurants = (rawRestaurantData, cuisineType) => {
+export const processRestaurants = (rawRestaurantData, cuisineType, searchMode) => {
     const reducedCuisineDataRestaurants = rawRestaurantData.map((r) => {
         return {
             ...r,
@@ -14,14 +17,24 @@ export const processRestaurants = (rawRestaurantData, cuisineType) => {
     const cuisineSpecialRestaurant = cuisineType !== ""
         ? reducedCuisineDataRestaurants.filter((r) => r.cuisines.includes(cuisineType))
         : reducedCuisineDataRestaurants
+
+    if (searchMode === 'delivery') {
+        return cuisineSpecialRestaurant
+            .filter((r) => r !== undefined &&
+                r.availability !== undefined &&
+                r.availability.delivery !== undefined &&
+                r.availability.delivery.etaMinutes !== undefined)
+            .filter((r) => r.availability.delivery.isOpen)
+            .sort((r1, r2) => r1.availability.delivery.etaMinutes.rangeLower -
+                r2.availability.delivery.etaMinutes.rangeLower);
+    }
     return cuisineSpecialRestaurant
         .filter((r) => r !== undefined &&
+            r.driveDistanceMeters !== undefined &&
             r.availability !== undefined &&
-            r.availability.delivery !== undefined &&
-            r.availability.delivery.etaMinutes !== undefined)
-        .filter((r) => r.availability.delivery.isOpen)
-        .sort((r1, r2) => r1.availability.delivery.etaMinutes.rangeLower -
-            r2.availability.delivery.etaMinutes.rangeLower);
+            r.availability.collection !== undefined &&
+            !r.availability.collection.isOpen)
+        .sort((r1, r2) => r1.driveDistanceMeters -  r2.driveDistanceMetersr);
 };
 
 export const getRestaurantAddrAsString = (restaurantAddress) => {

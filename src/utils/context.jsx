@@ -16,14 +16,14 @@ const AppProvider = ({children}) => {
     const [postCodeResult, setPostCodeResult] = useState(null);
 
     // ensures new instance of fetchRestaurant is called whenever it's created
-    console.log("Fetch is called again")
     const fetchRestaurants = useCallback(async() => {
         try {
+            console.log("Fetch is called again")
             const response = await fetch(`${proxyEndpoint}/${searchTerm}`);
             const data = await response.json();
             const restaurantList = data.restaurants;
             if (restaurantList){
-                const processedRestaurants = processRestaurants(restaurantList, cuisineType);
+                const processedRestaurants = processRestaurants(restaurantList, cuisineType, searchMode);
                 const sliceHigh = Math.min(10, processedRestaurants.length);
                 const restaurants = processedRestaurants.slice(0, sliceHigh).map((singleRestaurant) => {
                     const {id, name, cuisines , rating, address, logoUrl, availability} = singleRestaurant;
@@ -51,7 +51,7 @@ const AppProvider = ({children}) => {
         } catch(error){
             console.log(error);
         }
-    }, [searchTerm, cuisineType]);     // ensure new instance fetchRestaurants is created whenever its depepdnesis changes
+    }, [searchTerm, cuisineType, searchMode]);     // ensure new instance fetchRestaurants is created whenever its depepdnesis changes
 
     // ensures new instance of fetchRestaurant is called whenever it's created
     useEffect(() => {
