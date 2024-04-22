@@ -51,6 +51,5 @@ describe('CuisineTypes', () => {
             const capitalized = icon.charAt(0).toUpperCase() + icon.slice(1, -5)
             expect(setCuisineType.mock.calls[i][0]).toBe(capitalized);
         }
-        console.log(setCuisineType.mock.calls)
     });
 });

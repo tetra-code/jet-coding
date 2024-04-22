@@ -2,9 +2,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import { useCallback } from 'react';
 import { processRestaurants } from './util';
 
-
 const AppContext = React.createContext();
-
 
 let proxyEndpoint = `http://localhost:8080/api`
 
@@ -15,11 +13,12 @@ const AppProvider = ({children}) => {
     const [resultTitle, setResultTitle] = useState("");
     const [searchMode, setSearchMode] = useState("delivery")
     const [cuisineType, setCuisineType] = useState("")
+    const [postCodeResult, setPostCodeResult] = useState(null);
 
     // ensures new instance of fetchRestaurant is called whenever it's created
     const fetchRestaurants = useCallback(async() => {
         try {
-            console.log("Fetch restaurants invoked")
+            // console.log("Fetch restaurants invoked")
             const response = await fetch(`${proxyEndpoint}/${searchTerm}`);
             const data = await response.json();
             const restaurantList = data.restaurants;
@@ -62,11 +61,11 @@ const AppProvider = ({children}) => {
     return (
         <AppContext.Provider value = {{
             restaurants,
-            resultTitle,
+            resultTitle, setResultTitle,
             searchTerm, setSearchTerm,
-            setResultTitle,
             searchMode, setSearchMode,
-            cuisineType, setCuisineType
+            cuisineType, setCuisineType,
+            postCodeResult, setPostCodeResult
         }}>
             {children}
         </AppContext.Provider>

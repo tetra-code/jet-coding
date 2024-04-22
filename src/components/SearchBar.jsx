@@ -4,14 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../utils/context';
 import { isValidUKPostcode} from "../utils/util";
 import "./SearchBar.css";
+import PostcodesIO from "postcodesio-client";
 
 
 // TODO: bonus feature to show postcode suggestions as you type along
 const SearchBar = () => {
-    const {setSearchTerm, setResultTitle, cuisineType, setCuisineType} = useGlobalContext();
+    const {setSearchTerm, setResultTitle, cuisineType, setCuisineType, setPostCodeResult} = useGlobalContext();
     const searchTerm = useRef('');
     const navigate = useNavigate();
 
+    const postcodes = new PostcodesIO();
+
+    // TODO: What is this for?
     useEffect(() => searchTerm.current.focus(), []);
 
     const handleKeyDown = (e) => {
@@ -27,7 +31,11 @@ const SearchBar = () => {
 
         if (isValidUKPostcode(searchTerm.current.value)) {
             // remove white spaces
-            setSearchTerm(searchTerm.current.value.replaceAll(' ', ''));
+            const trimmedPostCode = searchTerm.current.value.replaceAll(' ', '');
+            setSearchTerm(trimmedPostCode);
+            postcodes.lookup(trimmedPostCode).then(postcode => {
+                setPostCodeResult(postcode);
+            });
 
             // goes back to original search display, without cuisine type filters
             if (cuisineType !== "") setCuisineType("")

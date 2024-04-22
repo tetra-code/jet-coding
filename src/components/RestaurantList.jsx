@@ -7,7 +7,7 @@ import "./RestaurantList.css";
 
 
 export const RestaurantList = () => {
-    const {restaurants, resultTitle, searchTerm, searchMode} = useGlobalContext();
+    const {restaurants, resultTitle, searchTerm, searchMode, postCodeResult} = useGlobalContext();
 
     if (searchTerm === "") return (
         <section className='restaurantList'>
@@ -19,6 +19,7 @@ export const RestaurantList = () => {
         </section>
     )
 
+    // TODO: perhaps loading state
     const resultContent = searchMode === 'delivery'
         ? <div data-testid='delivery-mode-result' className='restaurant-list-content grid'>
             {
@@ -31,13 +32,19 @@ export const RestaurantList = () => {
         </div>
         : <div data-testid='pickup-mode-result' >
             <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-            <MapContainer center={[51.505, -0.09]} zoom={13} style={{height: "80vh", width: "60vw"}}>
+            <MapContainer
+                center={[postCodeResult.latitude, postCodeResult.longitude]}
+                zoom={20}
+                style={{height: "80vh", width: "60vw"}}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
             </MapContainer>
         </div>
+
+    // TODO: figure out why it is being invoked twice for one click
+    console.log("Invoked again")
 
     return (
         <section className='restaurant-list'>
