@@ -2,12 +2,8 @@ import React, {useRef, useEffect} from 'react';
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from '../utils/context';
+import { isValidUKPostcode} from "../utils/util";
 import "./SearchBar.css";
-
-
-const regexString =
-    "([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\\s?[0-9][A-Za-z]{2})";
-const postCodeRegex = new RegExp(regexString);
 
 
 // TODO: bonus feature to show postcode suggestions as you type along
@@ -31,7 +27,7 @@ const SearchBar = () => {
 
         // remove white spaces
         const trimmedSearchTerm = searchTerm.current.value.replaceAll(' ', '')
-        if (trimmedSearchTerm.length <= 7 && postCodeRegex.test(trimmedSearchTerm)){
+        if (isValidUKPostcode(trimmedSearchTerm)) {
             setSearchTerm(trimmedSearchTerm);
             // goes back to original search display, without cuisine type filters
             if (cuisineType !== "") setCuisineType("")
@@ -48,7 +44,7 @@ const SearchBar = () => {
         <div className='search-form'>
             <div className='container'>
                 <div className='search-form-elem flex flex-c bg-white'>
-                    <FaSearch className="icon" size={32} onClick={handleSearch}/>
+                    <FaSearch className="icon" size={32} onClick={handleSearch} data-testid="search-icon"/>
                     <input
                         className="form-control"
                         placeholder="Type a UK postcode"

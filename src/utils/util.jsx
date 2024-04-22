@@ -32,3 +32,10 @@ export const getActualCuisinesAsString = (restaurantCuisines) => {
         )
         .join(", ")
 }
+
+export const isValidUKPostcode = (trimmedSearchTerm) => {
+    const regexString =
+        "([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\\s?[0-9][A-Za-z]{2})";
+    const postCodeRegex = new RegExp(regexString);
+    return trimmedSearchTerm.length <= 7 && postCodeRegex.test(trimmedSearchTerm);
+}
