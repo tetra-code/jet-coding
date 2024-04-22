@@ -18,31 +18,37 @@ export const Restaurant = (restaurant) => {
             {/*    </div>*/}
             {/*)}*/}
             <div className='restaurant-item-logo'>
-                <img className='flex' src={restaurant.logoUrl} alt="cover"/>
+                <img className='flex' src={restaurant.logoUrl} alt="cover" data-testid="restaurant-logo"/>
             </div>
             <div className='restaurant-item-info'>
                 <div className='restaurant-item-info-item font-medium text-center'>
-                    <span>{restaurant.name}</span>
+                    <span data-testid="restaurant-name">{restaurant.name}</span>
                 </div>
                 <div>
-                    <span><FaLocationDot style={{ color: 'var(--black-color)' }}/>&nbsp;
-                        {getRestaurantAddrAsString(restaurant.address)}</span>
+                    <span data-testid="restaurant-address">
+                        <FaLocationDot style={{ color: 'var(--black-color)' }}/>
+                        &nbsp;{getRestaurantAddrAsString(restaurant.address)}
+                    </span>
                 </div>
                 <div>
-                    <span><FaStar style={{color: 'var(--orange-color)'}}/>&nbsp;
-                        <b>{restaurant.rating.starRating}</b></span>&nbsp;
-                    <span className="font-small">
+                    <span data-testid="restaurant-rating-star">
+                        <FaStar style={{color: 'var(--orange-color)'}}/>
+                        &nbsp;<b>{restaurant.rating.starRating}</b>
+                    </span>&nbsp;
+                    <span className="font-small" data-testid="restaurant-rating-count">
                          ({restaurant.rating.count})
                     </span>&nbsp;&nbsp;&nbsp;
-                    <span><CiCircleChevDown style={{color: 'var(--black-color)'}}/>&nbsp;
-                        {restaurant.availability.delivery.etaMinutes.rangeLower} ~
+                    <span data-testid="restaurant-delivery-time">
+                        <CiCircleChevDown style={{color: 'var(--black-color)'}}/>
+                        &nbsp;{restaurant.availability.delivery.etaMinutes.rangeLower} ~&nbsp;
                         {restaurant.availability.delivery.etaMinutes.rangeUpper} min
                     </span>
                 </div>
-
                 <div>
-                    <span><MdFastfood style={{color: 'var(--orange-color)'}}/>&nbsp;
-                        {getActualCuisinesAsString(restaurant.cuisines)}</span>
+                    <span data-testid="restaurant-cuisines">
+                        <MdFastfood style={{color: 'var(--orange-color)'}} data-testid="food-icon"/>
+                        &nbsp;{getActualCuisinesAsString(restaurant.cuisines)}
+                    </span>
                 </div>
             </div>
         </div>
