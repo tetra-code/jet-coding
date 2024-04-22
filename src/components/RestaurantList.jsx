@@ -36,7 +36,16 @@ export const RestaurantList = () => {
                 })
             }
         </div>
-        : <div data-testid='pickup-mode-result' >
+        : <div data-testid='pickup-mode-result'>
+            <div className='restaurant-list-content nav'>
+                {
+                    restaurants.map((restaurant, index) => {
+                        return (
+                            <Restaurant data-testid='restaurant' key={index} {...restaurant} />
+                        )
+                    })
+                }
+            </div>
             <MapContainer
                 center={[51.505, -0.09]}
                 zoom={14}
@@ -45,15 +54,15 @@ export const RestaurantList = () => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
-                <SetCenterOnNewSearch coords={newCenter} />
+                <SetCenterOnNewSearch coords={newCenter}/>
                 {
                     restaurants.map((restaurant, index) => {
                         const coordinates = restaurant.address.location.coordinates
                         return (
                             <Marker key={index} position={[coordinates[1], coordinates[0]]} icon={DefaultIcon}>
-                                <Popup>
-                                    A pretty CSS3 popup. <br /> Easily customizable.
-                                </Popup>
+                                {/*<Popup>*/}
+                                {/*    <Restaurant data-testid='restaurant' key={index} {...restaurant} />*/}
+                                {/*</Popup>*/}
                             </Marker>
                         )
                     })

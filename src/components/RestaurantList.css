@@ -4,7 +4,7 @@
 }
 
 .restaurant-list-content {
-    gap: 3rem;
+    gap: 2rem;
 }
 
 .restaurant-item {
@@ -35,6 +35,12 @@
     background-color: var(--orange-color);
     border-radius:  0 15px 15px 0;
     padding: 6px;
+}
+
+/* nav mode */
+.nav {
+    width: 300px;
+    height: 100px;
 }
 
 @media screen and (min-width: 750px) {
