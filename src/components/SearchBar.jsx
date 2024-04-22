@@ -28,13 +28,13 @@ const SearchBar = () => {
         if (isValidUKPostcode(searchTerm.current.value)) {
             // remove white spaces
             setSearchTerm(searchTerm.current.value.replaceAll(' ', ''));
+
             // goes back to original search display, without cuisine type filters
             if (cuisineType !== "") setCuisineType("")
         } else {
-            setResultTitle("Not a valid UK postcode");
-
             // invoke fetchRestaurant to show empty result
             setSearchTerm("");
+            setResultTitle("Not a valid UK postcode");
         }
         navigate("/restaurants");
     };

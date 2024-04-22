@@ -18,7 +18,6 @@ const AppProvider = ({children}) => {
 
 
     // ensures new instance of fetchRestaurant is called whenever it's created
-    // TODO: Ensure fetch restaurant only being invoked under "appropriate" states
     const fetchRestaurants = useCallback(async() => {
         try {
             console.log("Fetch restaurants invoked")
