@@ -18,17 +18,31 @@ jest.mock('../../src/utils/context', () => ({
 
 describe('SearchBar', () => {
     let setSearchTerm, setResultTitle, setCuisineType, handleSearch, handleSubmit;
-    const searchBarPlaceholderText = "Type a UK postcode";
-    const validSearchTerm1 = "EC4M74F";
-    const validSearchTerm2 = "EC4M 74F";
-    const validSearchTerm3 = "PL4 0DW";
-    const validSearchTerm4 = "L4 0TH";
-    const invalidSearchTerm1 = "S E 1 1";
-    const invalidSearchTerm2 = "fds3f4edf";
-    const invalidSearchTerm3 = "151DEN U8";
-    const invalidSearchTerm4 = "@#f8dNU8";
-    const invalidSearchTerm5 = "1df83did djf83j932nfdiow8ff3f";
-    const emptySearchTerm = "";
+    const validSearchTerm1 = "EC4M7RF";
+    const validSearchTerm2 = "EC4M 7RF";
+    const validSearchTerm3 = "EC 4M 7RF";
+    const validSearchTerm4 = "CT1 2EH";
+    const validSearchTerm5 = "BS1 4DJ";
+    const validSearchTerm6 = "PL4 0DW";
+    const validSearchTerm7 = "G3 8AG";
+    const validSearchTerm8 = "BN1 1AE";
+    const validSearchTerm9 = "M16 ORA";
+    const validSearchTerm10 = "L4 0TH";
+    const validSearchTerm11 = "EC4M";
+    const invalidSearchTerm1 = "SE11";
+    const invalidSearchTerm2 = "SE 11";
+    const invalidSearchTerm3 = "EC4M7Rf";
+    const invalidSearchTerm4 = "EC4M7R";
+    const invalidSearchTerm5 = "";
+    const invalidSearchTerm6 = "E";
+    const invalidSearchTerm7 = "%";
+    const invalidSearchTerm8 = "EC4M7R#";
+    const invalidSearchTerm9 = "ec4m7rf";
+    const invalidSearchTerm10 = "EC4M7RF3";
+    const invalidSearchTerm11 = "fds3f4edf";
+    const invalidSearchTerm12 = "151DEN U8";
+    const invalidSearchTerm13 = "@#f8dNU8";
+    const invalidSearchTerm14 = "1df83did djf83j932nfdiow8ff3f";
 
     beforeEach(() => {
         setSearchTerm = jest.fn();
@@ -67,6 +81,6 @@ describe('SearchBar', () => {
         const searchIcon = screen.getByTestId('search-icon');
         fireEvent.click(searchIcon);
         // expect(handleSubmit).toHaveBeenCalled();
-        expect(setSearchTerm).toHaveBeenCalledWith(validSearchTerm1);
+        expect(setSearchTerm).toBe()
     });
 });

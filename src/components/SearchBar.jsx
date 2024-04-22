@@ -25,10 +25,9 @@ const SearchBar = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // remove white spaces
-        const trimmedSearchTerm = searchTerm.current.value.replaceAll(' ', '')
-        if (isValidUKPostcode(trimmedSearchTerm)) {
-            setSearchTerm(trimmedSearchTerm);
+        if (isValidUKPostcode(searchTerm.current.value)) {
+            // remove white spaces
+            setSearchTerm(searchTerm.current.value.replaceAll(' ', ''));
             // goes back to original search display, without cuisine type filters
             if (cuisineType !== "") setCuisineType("")
         } else {
