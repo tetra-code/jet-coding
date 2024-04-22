@@ -1,26 +1,14 @@
 import React from 'react';
-import "./RestaurantList.css"
+import { getRestaurantAddrAsString, getActualCuisinesAsString } from "../utils/util";
 import { CiCircleChevDown } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdFastfood } from "react-icons/md";
+import "./RestaurantList.css"
 
 
 export const Restaurant = (restaurant) => {
-    const mapAddressDictToString = (restaurantAddress) => {
-        return restaurantAddress.firstLine + ", " + restaurantAddress.postalCode + ", " + restaurantAddress.city;
-    }
 
-    const mapCuisinesArrayToString = (restaurantCuisines) => {
-        return restaurantCuisines
-            .filter(
-                (c) => c.toLowerCase() !== "collect stamps"
-                && c.toLowerCase() !== "deals"
-                && c.toLowerCase() !== "low delivery fee"
-                && c.toLowerCase() !== "freebies"
-            )
-            .join(", ")
-    }
 
     // TODO: show additional tags for deals, low delivery fee, freebies, and collect stamps
     return (
@@ -40,7 +28,7 @@ export const Restaurant = (restaurant) => {
                 </div>
                 <div>
                     <span><FaLocationDot style={{ color: 'var(--black-color)' }}/>&nbsp;
-                        {mapAddressDictToString(restaurant.address)}</span>
+                        {getRestaurantAddrAsString(restaurant.address)}</span>
                 </div>
                 <div>
                     <span><FaStar style={{color: 'var(--orange-color)'}}/>&nbsp;
@@ -56,7 +44,7 @@ export const Restaurant = (restaurant) => {
 
                 <div>
                     <span><MdFastfood style={{color: 'var(--orange-color)'}}/>&nbsp;
-                        {mapCuisinesArrayToString(restaurant.cuisines)}</span>
+                        {getActualCuisinesAsString(restaurant.cuisines)}</span>
                 </div>
             </div>
         </div>

@@ -1,5 +1,8 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { useCallback } from 'react';
+import { processRestaurants } from './util';
+
+
 const AppContext = React.createContext();
 
 
@@ -13,25 +16,6 @@ const AppProvider = ({children}) => {
     const [searchMode, setSearchMode] = useState("delivery")
     const [cuisineType, setCuisineType] = useState("")
 
-    const processRestaurants = (restaurantList) => {
-        const reducedCuisineDataRestaurants = restaurantList.map((r) => {
-            return {
-                ...r,
-                cuisines: r.cuisines.map((c) => c.name)
-            }
-        })
-        const cuisineSpecialRestaurant = cuisineType !== ""
-            ? reducedCuisineDataRestaurants.filter((r) => r.cuisines.includes(cuisineType))
-            : reducedCuisineDataRestaurants
-        return cuisineSpecialRestaurant
-            .filter((r) => r !== undefined &&
-                r.availability !== undefined &&
-                r.availability.delivery !== undefined &&
-                r.availability.delivery.etaMinutes !== undefined)
-            .filter((r) => r.availability.delivery.isOpen)
-            .sort((r1, r2) => r1.availability.delivery.etaMinutes.rangeLower -
-                r2.availability.delivery.etaMinutes.rangeLower);
-    };
 
     // ensures new instance of fetchRestaurant is called whenever it's created
     // TODO: Ensure fetch restaurant only being invoked under "appropriate" states
