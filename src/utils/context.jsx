@@ -24,7 +24,7 @@ const AppProvider = ({children}) => {
             const data = await response.json();
             const restaurantList = data.restaurants;
             if (restaurantList){
-                const processedRestaurants = processRestaurants(restaurantList);
+                const processedRestaurants = processRestaurants(restaurantList, cuisineType);
                 const sliceHigh = Math.min(10, processedRestaurants.length);
                 const restaurants = processedRestaurants.slice(0, sliceHigh).map((singleRestaurant) => {
                     const {id, name, cuisines , rating, address, logoUrl, availability} = singleRestaurant;

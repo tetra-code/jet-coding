@@ -19,8 +19,8 @@
     cursor: pointer;
 }
 
-.hamburger-icon {
-    background: url("../../public/icons/hamburger.webp") center/cover no-repeat;
+.burgers-icon {
+    background: url("../../public/icons/burgers.webp") center/cover no-repeat;
 }
 
 .chicken-icon {
@@ -39,10 +39,6 @@
     background: url("../../public/icons/kebab.png") center/cover no-repeat;
 }
 
-.hamburger-icon {
-    background: url("../../public/icons/hamburger.webp") center/cover no-repeat;
-}
-
 .sushi-icon {
     background: url("../../public/icons/sushi.png") center/cover no-repeat;
 }
@@ -51,8 +47,8 @@
     background: url("../../public/icons/pizza.png") center/cover no-repeat;
 }
 
-.grocery-icon {
-    background: url("../../public/icons/grocery.jpg") center/cover no-repeat;
+.groceries-icon {
+    background: url("../../public/icons/groceries.jpg") center/cover no-repeat;
 }
 
 .indian-icon {
