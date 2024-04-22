@@ -1,5 +1,11 @@
-export const processRestaurants = (restaurantList, cuisineType) => {
-    const reducedCuisineDataRestaurants = restaurantList.map((r) => {
+/*  Receives list of unprocessed restaurant data from the API call.
+    First reduces cuisine dict attribute of each restaurant to a list of cuisine names.
+    Then filers out restaurants that don't include the specified cuisine type.
+    Additional filtering for restaurants that don't specify its availability nor delivery time.
+    Finally, sorts the restaurants by their earliest delivery time.
+*/
+export const processRestaurants = (rawRestaurantData, cuisineType) => {
+    const reducedCuisineDataRestaurants = rawRestaurantData.map((r) => {
         return {
             ...r,
             cuisines: r.cuisines.map((c) => c.name)
@@ -19,7 +25,17 @@ export const processRestaurants = (restaurantList, cuisineType) => {
 };
 
 export const getRestaurantAddrAsString = (restaurantAddress) => {
-    return restaurantAddress.firstLine + ", " + restaurantAddress.postalCode + ", " + restaurantAddress.city;
+    const arr = [];
+    if (restaurantAddress.firstLine !== "") {
+        arr.push(restaurantAddress.firstLine);
+    }
+    if (restaurantAddress.postalCode !== "") {
+        arr.push(restaurantAddress.postalCode);
+    }
+    if (restaurantAddress.city !== "") {
+        arr.push(restaurantAddress.city);
+    }
+    return arr.join(", ");
 }
 
 export const getActualCuisinesAsString = (restaurantCuisines) => {

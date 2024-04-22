@@ -1,6 +1,11 @@
-import {isValidUKPostcode} from "../../src/utils/util";
+import {
+    isValidUKPostcode,
+    getActualCuisinesAsString,
+    getRestaurantAddrAsString,
+    processRestaurants
+} from "../../src/utils/util";
 
-describe('ValidPostCode', () => {
+describe('Postcode validation', () => {
     const validSearchTerm1 = "EC4M7RF";
     const validSearchTerm2 = "EC4M 7RF";
     const validSearchTerm3 = "EC 4M 7RF";
@@ -69,3 +74,98 @@ describe('ValidPostCode', () => {
         expect(isValidUKPostcode(invalidSearchTerm17)).toBe(false);
     });
 });
+
+describe('Get restaurant address', () => {
+    const restaurantAddress1 = {
+        firstLine: "123 Main St",
+        postalCode: "EC4M7RF",
+        city: "London"
+    }
+    const restaurantAddress2 = {
+        firstLine: "1 Hampton St",
+        postalCode: "Y3 8AG",
+        city: "Bristol"
+    }
+    const restaurantAddress3 = {
+        firstLine: "",
+        postalCode: "Y3 8AG",
+        city: "Bristol"
+    }
+    const restaurantAddress4 = {
+        firstLine: "1 Hampton St",
+        postalCode: "",
+        city: ""
+    }
+    const restaurantAddress5 = {
+        firstLine: "1 Hampton St",
+        postalCode: "",
+        city: "Bristol"
+    }
+    const restaurantAddress6 = {
+        firstLine: "1 Hampton St",
+        postalCode: "Y3 8AG",
+        city: ""
+    }
+
+    const restaurantAddress7 = {
+        firstLine: "",
+        postalCode: "Y3 8AG",
+        city: ""
+    }
+    const restaurantAddress8 = {
+        firstLine: "",
+        postalCode: "",
+        city: "Manchester"
+    }
+    const restaurantAddress9 = {
+        firstLine: "",
+        postalCode: "",
+        city: ""
+    }
+
+    it('get restaurant address as string', () => {
+        expect(getRestaurantAddrAsString(restaurantAddress1)).toBe("123 Main St, EC4M7RF, London");
+        expect(getRestaurantAddrAsString(restaurantAddress2)).toBe("1 Hampton St, Y3 8AG, Bristol");
+        expect(getRestaurantAddrAsString(restaurantAddress3)).toBe("Y3 8AG, Bristol");
+        expect(getRestaurantAddrAsString(restaurantAddress4)).toBe("1 Hampton St");
+        expect(getRestaurantAddrAsString(restaurantAddress5)).toBe("1 Hampton St, Bristol");
+        expect(getRestaurantAddrAsString(restaurantAddress6)).toBe("1 Hampton St, Y3 8AG");
+        expect(getRestaurantAddrAsString(restaurantAddress7)).toBe("Y3 8AG");
+        expect(getRestaurantAddrAsString(restaurantAddress8)).toBe("Manchester");
+        expect(getRestaurantAddrAsString(restaurantAddress9)).toBe("");
+    });
+});
+
+describe('Get cuisines', () => {
+    const cuisines1 = ["Chinese", "Indian", "Italian", "Pizza"];
+    const cuisines2 = ["Chinese", "Indian", "Italian", "Pizza", "Deals", "Low Delivery Fee", "Freebies", "Collect Stamps"];
+    const cuisines3 = ["chinese", "indian", "pizza", "italian", "deals", "burgers", "low delivery fee"];
+    const cuisines4 = ["Deals", "Low Delivery Fee", "Freebies", "Collect Stamps"];
+    const cuisines5 = ["Deals", "Low Delivery Fee", "Freebies", "Collect Stamps", "Burgers"];
+    const cuisines6 = ["Deals", "Low Delivery Fee", "Freebies", "Collect Stamps", "Burgers", "Chinese"];
+    const cuisines7 = ["Deals", "Low Delivery Fee", "Freebies", "Collect Stamps", "Burgers", "Chinese", "Indian"];
+    const cuisines8 = [];
+    const cuisines9 = ["Indian"];
+    const cuisines10 = ["Indian", "Indian"];
+    const cuisines11 = ["Deals", "Deals", "Freebies", "Collect Stamps"];
+    const cuisines12 = ["basketball", "football"];
+
+
+    it('filter for cuisines', () => {
+        expect(getActualCuisinesAsString(cuisines1)).toBe("Chinese, Indian, Italian, Pizza");
+        expect(getActualCuisinesAsString(cuisines2)).toBe("Chinese, Indian, Italian, Pizza");
+        expect(getActualCuisinesAsString(cuisines3)).toBe("chinese, indian, pizza, italian, burgers");
+        expect(getActualCuisinesAsString(cuisines4)).toBe("");
+        expect(getActualCuisinesAsString(cuisines5)).toBe("Burgers");
+        expect(getActualCuisinesAsString(cuisines6)).toBe("Burgers, Chinese");
+        expect(getActualCuisinesAsString(cuisines7)).toBe("Burgers, Chinese, Indian");
+        expect(getActualCuisinesAsString(cuisines8)).toBe("");
+        expect(getActualCuisinesAsString(cuisines9)).toBe("Indian");
+        expect(getActualCuisinesAsString(cuisines10)).toBe("Indian, Indian");
+        expect(getActualCuisinesAsString(cuisines11)).toBe("");
+        expect(getActualCuisinesAsString(cuisines12)).toBe("basketball, football");
+    });
+});
+
+
+// TODO: test for proessRestaurans
