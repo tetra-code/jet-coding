@@ -6,9 +6,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdFastfood } from "react-icons/md";
 import "./RestaurantList.css"
 
-
 export const Restaurant = (restaurant) => {
-
 
     // TODO: show additional tags for deals, low delivery fee, freebies, and collect stamps
     return (

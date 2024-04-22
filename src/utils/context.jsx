@@ -16,7 +16,6 @@ const AppProvider = ({children}) => {
     const [searchMode, setSearchMode] = useState("delivery")
     const [cuisineType, setCuisineType] = useState("")
 
-
     // ensures new instance of fetchRestaurant is called whenever it's created
     const fetchRestaurants = useCallback(async() => {
         try {

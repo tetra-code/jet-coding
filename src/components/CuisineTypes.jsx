@@ -2,7 +2,6 @@ import React from 'react';
 import { useGlobalContext } from '../utils/context';
 import "./CusineTypes.css";
 
-
 const CuisineTypes = () => {
     const {setCuisineType} = useGlobalContext();
     const filterForCuisine = (cuisineType) => { setCuisineType(cuisineType) }

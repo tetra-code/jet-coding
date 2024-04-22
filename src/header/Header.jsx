@@ -3,7 +3,6 @@ import SearchBar from "../components/SearchBar";
 import Toggle from "../components/Toggle";
 import "./Header.css";
 
-
 const Header = () => {
   return (
     <div className='holder'>
