@@ -10,7 +10,7 @@ export const Restaurant = (restaurant) => {
 
     // TODO: show additional tags for deals, low delivery fee, freebies, and collect stamps
     return (
-        <div className='restaurant-item'>
+        <div data-testid="restaurant" className='restaurant-item'>
             {/*/!* Conditional rendering for the "deals" offer *!/*/}
             {/*{restaurant.cuisines.includes("Deals") && (*/}
             {/*    <div className='restaurant-item-deal'>*/}
