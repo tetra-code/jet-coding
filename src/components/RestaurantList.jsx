@@ -13,7 +13,7 @@ export const RestaurantList = () => {
         <section className='restaurantList'>
             <div className='container'>
                 <div className='section-title'>
-                    <h2>{resultTitle}</h2>
+                    <h2 data-testid='empty-result'>{resultTitle}</h2>
                 </div>
             </div>
         </section>
@@ -42,8 +42,8 @@ export const RestaurantList = () => {
     return (
         <section className='restaurant-list'>
             <div className='container'>
-                <CuisineTypes />
-                <div className='section-title'>
+                <CuisineTypes/>
+                <div className='section-title' data-testid='non-empty-result'>
                     <h2>{resultTitle}</h2>
                 </div>
                 {resultContent}

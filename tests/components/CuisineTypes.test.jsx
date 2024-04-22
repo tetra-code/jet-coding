@@ -31,8 +31,8 @@ describe('CuisineTypes', () => {
         render(
             <CuisineTypes />
         );
-        const searchIcon = screen.getByTestId('burgers-icon');
-        expect(searchIcon).toBeInTheDocument();
+        const burgerIcon = screen.getByTestId('burgers-icon');
+        expect(burgerIcon).toBeInTheDocument();
     });
 
     it('cuisineType is correctly set when icon is clicked', () => {

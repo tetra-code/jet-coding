@@ -31,8 +31,8 @@ describe('Restaurant', () => {
         render(
             <Restaurant {...restaurant} />
         );
-        const searchIcon = screen.getByTestId('food-icon');
-        expect(searchIcon).toBeInTheDocument();
+        const foodIcon = screen.getByTestId('food-icon');
+        expect(foodIcon).toBeInTheDocument();
     });
 
     it('restaurant attributes are all correctly inserted', () => {
