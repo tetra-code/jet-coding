@@ -68,7 +68,7 @@ export const RestaurantList = () => {
                 class='map-container'
                 center={[51.505, -0.09]}
                 zoom={13}
-                style={{height: "100vh", width: "55vw"}}>
+                style={{height: "95vh", width: "55vw"}}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

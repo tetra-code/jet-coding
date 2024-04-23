@@ -2,8 +2,6 @@ import React from 'react';
 import { useGlobalContext } from '../utils/context';
 import "./Toggle.css";
 
-
-// TODO: add icons to toggle switch
 const Toggle = () => {
     const {isDeliveryMode, setDeliveryMode} = useGlobalContext();
 

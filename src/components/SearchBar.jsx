@@ -7,7 +7,6 @@ import "./SearchBar.css";
 import PostcodesIO from "postcodesio-client";
 
 
-// TODO: bonus feature to show postcode suggestions as you type along
 const SearchBar = () => {
     const {setSearchTerm, setResultTitle, cuisineType, setCuisineType, setPostCodeResult} = useGlobalContext();
     const searchTerm = useRef('');

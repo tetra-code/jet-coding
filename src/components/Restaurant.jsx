@@ -10,7 +10,22 @@ import {useGlobalContext} from "../utils/context";
 export const Restaurant = ({index, restaurant}) => {
     const {isDeliveryMode, setClickedRestaurant} = useGlobalContext();
 
-    // TODO: show additional tags for deals, low delivery fee, freebies, and collect stamps
+    const offersElements =
+        <div>
+            {/* Conditional rendering for the "deals" offer */}
+            {restaurant.cuisines.includes("Deals") && (
+                <div className='restaurant-item-deal'>
+                    <FaStar style={{color: 'var(--black-color)'}}/>
+                    <span>Deals Available!</span>
+                </div>
+            )}
+            {restaurant.cuisines.includes("Collect stamps") && (
+                <div className='restaurant-item-deal'>
+                    <span>Collect stamps</span>
+                </div>
+            )}
+        </div>
+
     return isDeliveryMode
     ? <div data-testid="restaurant" className='restaurant-item'>
             {/*/!* Conditional rendering for the "deals" offer *!/*/}
