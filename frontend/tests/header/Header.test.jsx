@@ -28,7 +28,6 @@ describe('Header', () => {
         expect(title).toHaveTextContent('Just Eat Takeaway');
     });
 
-    // Test 2: Header renders SearchBar and Toggle components
     it('renders SearchBar and Toggle components', () => {
         render(
             <MemoryRouter>

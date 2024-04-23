@@ -8,7 +8,7 @@ const Header = () => {
     <div className='holder'>
         <header className='header'>
             <div className='header-content flex flex-c text-center text-white'>
-                <h2 className='header-title'>Just Eat Takeaway</h2><br />
+                <h2 data-testid='main-header' className='header-title'>Just Eat Takeaway</h2><br />
                 <SearchBar />
                 <Toggle />
             </div>
