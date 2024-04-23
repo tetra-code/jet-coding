@@ -1,8 +1,8 @@
 .switch {
     position: relative;
     display: inline-block;
-    width: 100px;
-    height: 34px;
+    width: 160px;
+    height: 45px;
 }
 
 /* Rounded sliders */
@@ -17,7 +17,6 @@
 .slider {
     position: absolute;
     cursor: pointer;
-    /*content: "after";*/
     top: 0;
     left: 0;
     right: 0;
@@ -29,25 +28,33 @@
 
 .slider:before {
     position: absolute;
-    content: "";
-    height: 26px;
-    width: 46px;
-    left: 6px;
-    bottom: 4px;
+    color: var(--orange-color);
+    font-size: 20px;
+    font-weight: bold;
+    height: 35px;
+    width: 90px;
+    left: 5px;
+    bottom: 5px;
     -webkit-transition: .4s;
     transition: .4s;
     background: var(--white-color);
-    /*content: url('../../public/delivery-icon.jpg');*/
+}
+
+.delivery:before {
+    content: "Delivery";
+}
+
+.pickup:before {
+    content: "Pickup";
 }
 
 input:checked + .slider {
     background-color: var(--orange-color);
-    /*content: url('../../public/pickup-icon.jpg');*/
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(42px);
-    -ms-transform: translateX(42px);
-    transform: translateX(42px);
+    -webkit-transform: translateX(60px);
+    -ms-transform: translateX(60px);
+    transform: translateX(60px);
 }
 

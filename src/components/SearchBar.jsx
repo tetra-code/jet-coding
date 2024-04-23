@@ -51,13 +51,13 @@ const SearchBar = () => {
         <div className='search-form'>
             <div className='container'>
                 <div className='search-form-elem flex flex-c bg-white'>
-                    <FaSearch className="icon" size={32} onClick={handleSearch} data-testid="search-icon"/>
                     <input
                         className="form-control"
                         placeholder="Type a UK postcode"
                         ref = {searchTerm}
                         onKeyDown={handleKeyDown}
                     />
+                    <FaSearch className="icon" size={32} onClick={handleSearch} data-testid="search-icon"/>
                 </div>
             </div>
         </div>

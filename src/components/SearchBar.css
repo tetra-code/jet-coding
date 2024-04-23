@@ -1,6 +1,7 @@
 .search-form {
     width: 100%;
     max-width: 420px;
+    margin-bottom: 30px;
 }
 
 .search-form-elem {

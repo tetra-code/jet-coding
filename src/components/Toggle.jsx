@@ -17,7 +17,7 @@ const Toggle = () => {
                     className="toggle"
                     onClick={searchModeSwitch}
                 />
-                <span className="slider round">
+                <span className={`slider round ${isDeliveryMode ? 'delivery' : 'pickup'}`} >
                 </span>
             </label>
         </div>
