@@ -10,9 +10,8 @@ import {useGlobalContext} from "../utils/context";
 export const Restaurant = ({index, restaurant}) => {
     const {isDeliveryMode, setClickedRestaurant} = useGlobalContext();
 
-    const offersElements =
-        <div>
-            {/* Conditional rendering for the "deals" offer */}
+    const offersElement =
+        <div className="restaurant-item-deals">
             {restaurant.cuisines.includes("Deals") && (
                 <div className='restaurant-item-deal'>
                     <FaStar style={{color: 'var(--black-color)'}}/>
@@ -27,13 +26,8 @@ export const Restaurant = ({index, restaurant}) => {
         </div>
 
     return isDeliveryMode
-    ? <div data-testid="restaurant" className='restaurant-item'>
-            {/*/!* Conditional rendering for the "deals" offer *!/*/}
-            {/*{restaurant.cuisines.includes("Deals") && (*/}
-            {/*    <div className='restaurant-item-deal'>*/}
-            {/*        <span>Deals Available!</span>*/}
-            {/*    </div>*/}
-            {/*)}*/}
+        ? <div data-testid="restaurant" className='restaurant-item'>
+            {offersElement}
             <div className='restaurant-item-logo'>
                 <img className='flex' src={restaurant.logoUrl} alt="cover" data-testid="restaurant-logo"/>
             </div>
@@ -69,14 +63,12 @@ export const Restaurant = ({index, restaurant}) => {
                 </div>
             </div>
         </div>
-    : <div
+        : <div
             className='restaurant-item pickup-mode'
-            onClick={() => {
-                setClickedRestaurant(index)
-            }}
-            // onMouseLeave={() => setHoveredRestaurant(null)}
+            onClick={() => { setClickedRestaurant(index) }}
             data-testid="restaurant"
         >
+            {offersElement}
             <div className='restaurant-item-logo pickup-element'>
                 <img className='flex' src={restaurant.logoUrl} alt="cover" data-testid="restaurant-logo"/>
             </div>
