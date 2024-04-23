@@ -4,7 +4,6 @@ import {RestaurantList} from '../../src/components/RestaurantList';
 import '@testing-library/jest-dom';
 import {useGlobalContext} from "../../src/utils/context";
 
-
 jest.mock('react-leaflet');
 
 jest.mock('../../src/utils/context', () => ({
@@ -12,7 +11,10 @@ jest.mock('../../src/utils/context', () => ({
         restaurants: [],
         resultTitle: '',
         searchTerm: 'searchTerm',
-        searchMode: 'delivery'
+        isDeliveryMode: 'delivery',
+        postCodeResult: [],
+        clickedRestaurant: 0,
+        loading: false
     }),
 }));
 
@@ -68,7 +70,10 @@ describe('RestaurantList', () => {
             restaurants: [],
             resultTitle: '',
             searchTerm: '',
-            searchMode: 'delivery'
+            isDeliveryMode: 'delivery',
+            postCodeResult: [],
+            clickedRestaurant: 0,
+            loading: false
         }));
 
         render(
@@ -83,7 +88,11 @@ describe('RestaurantList', () => {
             restaurants: [],
             resultTitle: '',
             searchTerm: 'something',
-            searchMode: 'delivery'
+            isDeliveryMode: 'delivery',
+            postCodeResult: [],
+            clickedRestaurant: 0,
+            loading: false
+
         }));
 
         render(
@@ -100,7 +109,10 @@ describe('RestaurantList', () => {
             restaurants: [],
             resultTitle: '',
             searchTerm: 'something',
-            searchMode: 'delivery'
+            isDeliveryMode: 'delivery',
+            postCodeResult: [],
+            clickedRestaurant: 0,
+            loading: false
         }));
 
         render(
@@ -119,7 +131,10 @@ describe('RestaurantList', () => {
             restaurants: [],
             resultTitle: '',
             searchTerm: 'something',
-            searchMode: 'non-delivery'
+            isDeliveryMode: 'delivery',
+            postCodeResult: [],
+            clickedRestaurant: 0,
+            loading: false
         }));
 
         render(
@@ -136,7 +151,10 @@ describe('RestaurantList', () => {
             restaurants: [restaurant1],
             resultTitle: '',
             searchTerm: 'something',
-            searchMode: 'delivery'
+            isDeliveryMode: 'delivery',
+            postCodeResult: [],
+            clickedRestaurant: 0,
+            loading: false
         }));
 
         render(

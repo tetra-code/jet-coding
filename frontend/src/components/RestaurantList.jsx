@@ -21,7 +21,7 @@ export const RestaurantList = () => {
         loading
     } = useGlobalContext();
 
-    console.log("Restaurant list rendered")
+    // console.log("Restaurant list rendered")
 
     if (loading) return <Loader/>;
 
