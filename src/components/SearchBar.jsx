@@ -6,7 +6,6 @@ import { isValidUKPostcode} from "../utils/util";
 import "./SearchBar.css";
 import PostcodesIO from "postcodesio-client";
 
-
 const SearchBar = () => {
     const {setSearchTerm, setResultTitle, cuisineType, setCuisineType, setPostCodeResult} = useGlobalContext();
     const searchTerm = useRef('');
@@ -14,7 +13,7 @@ const SearchBar = () => {
 
     const postcodes = new PostcodesIO();
 
-    // TODO: What is this for?
+    // search input field automatically focused when SearchBar component first displayed, easier for typing
     useEffect(() => searchTerm.current.focus(), []);
 
     const handleKeyDown = (e) => {

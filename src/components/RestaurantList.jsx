@@ -6,17 +6,24 @@ import {useGlobalContext} from "../utils/context";
 import {SetCenterOnNewSearch} from "./SetCenterOnNewSearch";
 import {getRestaurantAddrAsString} from "../utils/util"
 import { DefaultIcon, HighlightedIcon } from "./LeafletMapIcon";
+import Loader from './Loader'
 import "./RestaurantList.css";
 
 export const RestaurantList = () => {
+    // re-rendered every time one of these changes
     const {
         restaurants,
         resultTitle,
         searchTerm,
         isDeliveryMode,
         postCodeResult,
-        clickedRestaurant
+        clickedRestaurant,
+        loading
     } = useGlobalContext();
+
+    console.log("Restaurant list rendered")
+
+    if (loading) return <Loader/>;
 
     const newCenter = restaurants.length > 0
         ? [postCodeResult.latitude, postCodeResult.longitude]
@@ -31,8 +38,6 @@ export const RestaurantList = () => {
             </div>
         </section>
     )
-
-    // TODO: perhaps loading state
 
     const resultContent = isDeliveryMode
         ? <div data-testid='delivery-mode-result' className='restaurant-list-content grid'>
@@ -92,11 +97,6 @@ export const RestaurantList = () => {
                 }
             </MapContainer>
         </div>
-
-    // TODO: figure out why it is being invoked twice for one click
-    // new search term invokes it three times
-    // Changing mode invokes it twice
-    console.log("Getting restaurant list")
 
     return (
         <section className='restaurant-list'>
