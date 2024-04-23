@@ -11,7 +11,7 @@ const AppProvider = ({children}) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [restaurants, setRestaurants] = useState([]);
     const [resultTitle, setResultTitle] = useState("");
-    const [searchMode, setSearchMode] = useState("delivery")
+    const [isDeliveryMode, setDeliveryMode] = useState(true)
     const [cuisineType, setCuisineType] = useState("")
     const [postCodeResult, setPostCodeResult] = useState(null);
 
@@ -23,7 +23,7 @@ const AppProvider = ({children}) => {
             const data = await response.json();
             const restaurantList = data.restaurants;
             if (restaurantList){
-                const processedRestaurants = processRestaurants(restaurantList, cuisineType, searchMode);
+                const processedRestaurants = processRestaurants(restaurantList, cuisineType, isDeliveryMode);
                 const sliceHigh = Math.min(10, processedRestaurants.length);
                 const restaurants = processedRestaurants.slice(0, sliceHigh).map((singleRestaurant) => {
                     const {id, name, cuisines , rating, address, logoUrl, availability} = singleRestaurant;
@@ -51,7 +51,7 @@ const AppProvider = ({children}) => {
         } catch(error){
             console.log(error);
         }
-    }, [searchTerm, cuisineType, searchMode]);     // ensure new instance fetchRestaurants is created whenever its depepdnesis changes
+    }, [searchTerm, cuisineType, isDeliveryMode]);     // ensure new instance fetchRestaurants is created whenever its depepdnesis changes
 
     // ensures new instance of fetchRestaurant is called whenever it's created
     useEffect(() => {
@@ -63,7 +63,7 @@ const AppProvider = ({children}) => {
             restaurants,
             resultTitle, setResultTitle,
             searchTerm, setSearchTerm,
-            searchMode, setSearchMode,
+            isDeliveryMode, setDeliveryMode,
             cuisineType, setCuisineType,
             postCodeResult, setPostCodeResult
         }}>

@@ -10,7 +10,7 @@ import "./RestaurantList.css";
 
 
 export const RestaurantList = () => {
-    const {restaurants, resultTitle, searchTerm, searchMode, postCodeResult} = useGlobalContext();
+    const {restaurants, resultTitle, searchTerm, isDeliveryMode, postCodeResult} = useGlobalContext();
 
     const newCenter = restaurants.length > 0
         ? [postCodeResult.latitude, postCodeResult.longitude]
@@ -29,7 +29,7 @@ export const RestaurantList = () => {
     // TODO: perhaps loading state
 
     // TODO: highlight maps marker when hover over item and other way around
-    const resultContent = searchMode === 'delivery'
+    const resultContent = isDeliveryMode
         ? <div data-testid='delivery-mode-result' className='restaurant-list-content grid'>
             {
                 restaurants.map((restaurant, index) => {

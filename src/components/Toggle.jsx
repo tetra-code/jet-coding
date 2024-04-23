@@ -5,15 +5,9 @@ import "./Toggle.css";
 
 // TODO: add icons to toggle switch
 const Toggle = () => {
-    const {searchMode, setSearchMode} = useGlobalContext();
+    const {isDeliveryMode, setDeliveryMode} = useGlobalContext();
 
-    const searchModeSwitch = () => {
-        if (searchMode === 'delivery') {
-            setSearchMode('pickup')
-        } else {
-            setSearchMode('delivery')
-        }
-    }
+    const searchModeSwitch = () => { setDeliveryMode(!isDeliveryMode) }
 
     return (
         <div className="container">

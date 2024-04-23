@@ -8,58 +8,53 @@ import "./RestaurantList.css"
 import {useGlobalContext} from "../utils/context";
 
 export const Restaurant = (restaurant) => {
-    const {searchMode} = useGlobalContext();
+    const {isDeliveryMode} = useGlobalContext();
 
     // TODO: show additional tags for deals, low delivery fee, freebies, and collect stamps
-    if (searchMode === 'delivery') {
-        return (
-            <div data-testid="restaurant" className='restaurant-item'>
-                {/*/!* Conditional rendering for the "deals" offer *!/*/}
-                {/*{restaurant.cuisines.includes("Deals") && (*/}
-                {/*    <div className='restaurant-item-deal'>*/}
-                {/*        <span>Deals Available!</span>*/}
-                {/*    </div>*/}
-                {/*)}*/}
-                <div className='restaurant-item-logo'>
-                    <img className='flex' src={restaurant.logoUrl} alt="cover" data-testid="restaurant-logo"/>
+    return isDeliveryMode
+    ? <div data-testid="restaurant" className='restaurant-item'>
+            {/*/!* Conditional rendering for the "deals" offer *!/*/}
+            {/*{restaurant.cuisines.includes("Deals") && (*/}
+            {/*    <div className='restaurant-item-deal'>*/}
+            {/*        <span>Deals Available!</span>*/}
+            {/*    </div>*/}
+            {/*)}*/}
+            <div className='restaurant-item-logo'>
+                <img className='flex' src={restaurant.logoUrl} alt="cover" data-testid="restaurant-logo"/>
+            </div>
+            <div className='restaurant-item-info'>
+                <div className='restaurant-item-info-item font-medium text-center'>
+                    <span data-testid="restaurant-name">{restaurant.name}</span>
                 </div>
-                <div className='restaurant-item-info'>
-                    <div className='restaurant-item-info-item font-medium text-center'>
-                        <span data-testid="restaurant-name">{restaurant.name}</span>
-                    </div>
-                    <div>
-                    <span data-testid="restaurant-address">
-                        <FaLocationDot style={{ color: 'var(--black-color)' }}/>
-                        &nbsp;{getRestaurantAddrAsString(restaurant.address)}
-                    </span>
-                    </div>
-                    <div>
-                    <span data-testid="restaurant-rating-star">
-                        <FaStar style={{color: 'var(--orange-color)'}}/>
-                        &nbsp;<b>{restaurant.rating.starRating}</b>
-                    </span>&nbsp;
-                        <span className="font-small" data-testid="restaurant-rating-count">
-                         ({restaurant.rating.count})
-                    </span>&nbsp;&nbsp;&nbsp;
-                        <span data-testid="restaurant-delivery-time">
-                        <CiCircleChevDown style={{color: 'var(--black-color)'}}/>
-                            &nbsp;{restaurant.availability.delivery.etaMinutes.rangeLower} ~&nbsp;
-                            {restaurant.availability.delivery.etaMinutes.rangeUpper} min
-                    </span>
-                    </div>
-                    <div>
-                    <span data-testid="restaurant-cuisines">
-                        <MdFastfood style={{color: 'var(--orange-color)'}} data-testid="food-icon"/>
-                        &nbsp;{getActualCuisinesAsString(restaurant.cuisines)}
-                    </span>
-                    </div>
+                <div>
+                <span data-testid="restaurant-address">
+                    <FaLocationDot style={{ color: 'var(--black-color)' }}/>
+                    &nbsp;{getRestaurantAddrAsString(restaurant.address)}
+                </span>
+                </div>
+                <div>
+                <span data-testid="restaurant-rating-star">
+                    <FaStar style={{color: 'var(--orange-color)'}}/>
+                    &nbsp;<b>{restaurant.rating.starRating}</b>
+                </span>&nbsp;
+                    <span className="font-small" data-testid="restaurant-rating-count">
+                     ({restaurant.rating.count})
+                </span>&nbsp;&nbsp;&nbsp;
+                    <span data-testid="restaurant-delivery-time">
+                    <CiCircleChevDown style={{color: 'var(--black-color)'}}/>
+                        &nbsp;{restaurant.availability.delivery.etaMinutes.rangeLower} ~&nbsp;
+                        {restaurant.availability.delivery.etaMinutes.rangeUpper} min
+                </span>
+                </div>
+                <div>
+                <span data-testid="restaurant-cuisines">
+                    <MdFastfood style={{color: 'var(--orange-color)'}} data-testid="food-icon"/>
+                    &nbsp;{getActualCuisinesAsString(restaurant.cuisines)}
+                </span>
                 </div>
             </div>
-        )
-    }
-
-    return (
-        <div data-testid="restaurant" className='restaurant-item pickup-mode'>
+        </div>
+    : <div data-testid="restaurant" className='restaurant-item pickup-mode'>
             <div className='restaurant-item-logo pickup-element'>
                 <img className='flex' src={restaurant.logoUrl} alt="cover" data-testid="restaurant-logo"/>
             </div>
@@ -84,7 +79,6 @@ export const Restaurant = (restaurant) => {
                 </div>
             </div>
         </div>
-    )
 }
 
 export default Restaurant

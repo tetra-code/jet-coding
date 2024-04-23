@@ -7,7 +7,7 @@
     If delivery mode, filter out restaurants not open for delivery and sort based on delivery lower range.
     Else, filter out restaurants not open for collection (pickup) and sort based on distance.
 */
-export const processRestaurants = (rawRestaurantData, cuisineType, searchMode) => {
+export const processRestaurants = (rawRestaurantData, cuisineType, isDeliveryMode) => {
     const reducedCuisineDataRestaurants = rawRestaurantData.map((r) => {
         return {
             ...r,
@@ -18,7 +18,7 @@ export const processRestaurants = (rawRestaurantData, cuisineType, searchMode) =
         ? reducedCuisineDataRestaurants.filter((r) => r.cuisines.includes(cuisineType))
         : reducedCuisineDataRestaurants
 
-    if (searchMode === 'delivery') {
+    if (isDeliveryMode) {
         return cuisineSpecialRestaurant
             .filter((r) => r !== undefined &&
                 r.availability !== undefined &&
