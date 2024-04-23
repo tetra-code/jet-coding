@@ -36,7 +36,6 @@ body {
 .text-light-black{color: var(--light-black-color);}
 .text-uppercase{text-transform: uppercase;}
 .text-center{text-align: center;}
-.text-capitalize{text-transform: capitalize;}
 .text-italic{font-style: italic;}
 
 .flex {

@@ -1,11 +1,14 @@
 .header-content {
     min-height: 75vh;
-    background: url("../../public/home-header.png") center/cover no-repeat;
+    background: url("../images/home-header.png") center/cover no-repeat;
     flex-direction: column;
 }
 
 .header-title {
-    font-size: 4.2rem;
+    font-size: 70px;
+    padding: 20px;
+    border-radius: 70px;
+    background-color: var(--orange-color);
 }
 
 .header-text {
