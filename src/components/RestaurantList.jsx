@@ -16,7 +16,7 @@ export const RestaurantList = () => {
         searchTerm,
         isDeliveryMode,
         postCodeResult,
-        hoveredRestaurant
+        clickedRestaurant
     } = useGlobalContext();
 
     const newCenter = restaurants.length > 0
@@ -43,7 +43,7 @@ export const RestaurantList = () => {
                         <Restaurant
                             data-testid='restaurant'
                             key={index}
-                            {...restaurant}
+                            restaurant={restaurant}
                         />
                     )
                 })
@@ -56,7 +56,8 @@ export const RestaurantList = () => {
                         return (
                             <Restaurant
                                 key={index}
-                                {...restaurant}
+                                index={index}
+                                restaurant={restaurant}
                                 data-testid='restaurant'
                             />
                         )
@@ -80,7 +81,7 @@ export const RestaurantList = () => {
                             <Marker
                                 key={index}
                                 position={[coordinates[1], coordinates[0]]}
-                                icon={index === hoveredRestaurant ? HighlightedIcon  : DefaultIcon}
+                                icon={index === clickedRestaurant ? HighlightedIcon  : DefaultIcon}
                             >
                                 <Popup>
                                     <strong>{restaurant.name}</strong><br/>

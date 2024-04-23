@@ -14,7 +14,7 @@ const AppProvider = ({children}) => {
     const [isDeliveryMode, setDeliveryMode] = useState(true)
     const [cuisineType, setCuisineType] = useState("")
     const [postCodeResult, setPostCodeResult] = useState(null);
-    const [hoveredRestaurant, setHoveredRestaurant] = useState(null);
+    const [clickedRestaurant, setClickedRestaurant] = useState(null);
 
     // ensures new instance of fetchRestaurant is called whenever it's created
     const fetchRestaurants = useCallback(async() => {
@@ -67,7 +67,7 @@ const AppProvider = ({children}) => {
             isDeliveryMode, setDeliveryMode,
             cuisineType, setCuisineType,
             postCodeResult, setPostCodeResult,
-            hoveredRestaurant, setHoveredRestaurant
+            clickedRestaurant, setClickedRestaurant
         }}>
             {children}
         </AppContext.Provider>
