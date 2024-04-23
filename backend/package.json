@@ -8,6 +8,6 @@
     "express": "^4.19.2"
   },
   "scripts": {
-    "build": "node src/proxy-server.mjs"
+    "start": "node src/proxy-server.mjs"
   }
 }
