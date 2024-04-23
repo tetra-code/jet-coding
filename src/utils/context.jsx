@@ -40,7 +40,7 @@ const AppProvider = ({children}) => {
                 });
                 setRestaurants(restaurants);
 
-                if (restaurants.length > 1){
+                if (restaurants.length > 0){
                     setResultTitle("Your Search Result");
                 } else {
                     setResultTitle("No Restaurants Available")
