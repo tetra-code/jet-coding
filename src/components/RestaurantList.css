@@ -54,7 +54,6 @@
     width: 330px;
     border-radius: 4px;
     background-color: var(--white-color);
-    box-shadow: var(--light-black-color) 0px 1px 1px 0px;
     transition: var(--transition);
     display: flex;
     border: 1px solid grey;
@@ -62,6 +61,7 @@
 
 .pickup-mode:hover {
     background-color: var(--light-grey-color);
+    box-shadow: none;
 }
 
 .pickup-element {
