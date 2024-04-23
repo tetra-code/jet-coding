@@ -57,6 +57,7 @@
     transition: var(--transition);
     display: flex;
     border: 1px solid grey;
+    cursor: pointer;
 }
 
 .pickup-mode:hover {
