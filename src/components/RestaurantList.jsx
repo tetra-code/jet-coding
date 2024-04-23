@@ -8,7 +8,6 @@ import {getRestaurantAddrAsString} from "../utils/util"
 import { DefaultIcon, HighlightedIcon } from "./LeafletMapIcon";
 import "./RestaurantList.css";
 
-
 export const RestaurantList = () => {
     const {
         restaurants,
@@ -95,7 +94,9 @@ export const RestaurantList = () => {
         </div>
 
     // TODO: figure out why it is being invoked twice for one click
-    // console.log("Invoked again")
+    // new search term invokes it three times
+    // Changing mode invokes it twice
+    console.log("Getting restaurant list")
 
     return (
         <section className='restaurant-list'>
