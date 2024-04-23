@@ -11,12 +11,12 @@ export const DefaultIcon = L.icon({
     iconUrl: defaultIcon,
     shadowUrl: iconShadow,
     iconSize: [40,40],
-    iconAnchor: [20,41]
+    iconAnchor: [10,10]
 });
 
 export const HighlightedIcon = L.icon({
     iconUrl: highlightedIcon,
     shadowUrl: iconShadow,
     iconSize: [40,40],
-    iconAnchor: [20,41]
+    iconAnchor: [10,10]
 });

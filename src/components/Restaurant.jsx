@@ -11,16 +11,20 @@ export const Restaurant = ({index, restaurant}) => {
     const {isDeliveryMode, setClickedRestaurant} = useGlobalContext();
 
     const offersElement =
-        <div className="restaurant-item-deals">
+        <div className="restaurant-item-offers">
             {restaurant.cuisines.includes("Deals") && (
-                <div className='restaurant-item-deal'>
-                    <FaStar style={{color: 'var(--black-color)'}}/>
-                    <span>Deals Available!</span>
+                <div className="deals-tag">
+                    <span>Deals Available</span>
                 </div>
             )}
             {restaurant.cuisines.includes("Collect stamps") && (
-                <div className='restaurant-item-deal'>
-                    <span>Collect stamps</span>
+                <div className="stamps-tag">
+                    <span>Stamps</span>
+                </div>
+            )}
+            {isDeliveryMode && restaurant.cuisines.includes("Low Delivery Fee") && (
+                <div className="low-delivery-fee-tag flex flex-c text-center">
+                    <span>Low Delivery Fee</span>
                 </div>
             )}
         </div>

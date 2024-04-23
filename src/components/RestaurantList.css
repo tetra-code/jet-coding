@@ -24,6 +24,7 @@
 
 /* Restaurant item */
 .restaurant-item {
+    position: relative;
     padding: 2rem 1.5rem;
     height: 18rem;
     border-radius: 4px;
@@ -34,6 +35,45 @@
 
 .restaurant-item:hover {
     box-shadow: var(--light-black-color) 0px 5px 10px 0px;
+}
+
+.restaurant-item-offers {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.deals-tag {
+    background-color: var(--orange-color);
+    border-radius: 0 15px 15px 0;
+    padding: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+.stamps-tag {
+    background-color: var(--black-color);
+    color: var(--white-color);
+    border-radius: 0 15px 15px 0;
+    padding: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    max-width: 45px;
+}
+
+.low-delivery-fee-tag {
+    background-color: var(--green-color);
+    color: var(--white-color);
+    border-radius: 25px;
+    padding: 6px;
+    font-size: 10px;
+    font-weight: bold;
+    max-width: 40px;
+    margin-top: 14px;
+    margin-left: 6px;
 }
 
 .restaurant-item-logo img {
@@ -60,22 +100,13 @@
     cursor: pointer;
 }
 
-.pickup-mode:hover {
-    background-color: var(--light-grey-color);
-    box-shadow: none;
-}
-
 .pickup-element {
     width: 400px;
     line-height: 1.5;
     font-size: 12px;
 }
 
-.restaurant-item-deal {
-    background-color: var(--orange-color);
-    border-radius:  0 15px 15px 0;
-    padding: 6px;
-}
+
 
 @media screen and (min-width: 750px) {
     .restaurant-list-content {
