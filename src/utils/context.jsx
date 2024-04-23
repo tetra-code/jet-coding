@@ -4,7 +4,7 @@ import { processRestaurants } from './util';
 
 const AppContext = React.createContext();
 
-let proxyEndpoint = `http://localhost:8080/api`
+const proxyEndpoint = `http://localhost:8080/api`
 
 // re-rendered whenever its state or props change
 const AppProvider = ({children}) => {
@@ -14,6 +14,7 @@ const AppProvider = ({children}) => {
     const [isDeliveryMode, setDeliveryMode] = useState(true)
     const [cuisineType, setCuisineType] = useState("")
     const [postCodeResult, setPostCodeResult] = useState(null);
+    const [hoveredRestaurant, setHoveredRestaurant] = useState(null);
 
     // ensures new instance of fetchRestaurant is called whenever it's created
     const fetchRestaurants = useCallback(async() => {
@@ -65,7 +66,8 @@ const AppProvider = ({children}) => {
             searchTerm, setSearchTerm,
             isDeliveryMode, setDeliveryMode,
             cuisineType, setCuisineType,
-            postCodeResult, setPostCodeResult
+            postCodeResult, setPostCodeResult,
+            hoveredRestaurant, setHoveredRestaurant
         }}>
             {children}
         </AppContext.Provider>

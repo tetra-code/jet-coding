@@ -7,8 +7,8 @@ import { MdFastfood } from "react-icons/md";
 import "./RestaurantList.css"
 import {useGlobalContext} from "../utils/context";
 
-export const Restaurant = (restaurant) => {
-    const {isDeliveryMode} = useGlobalContext();
+export const Restaurant = (restaurant, key) => {
+    const {isDeliveryMode, setHoveredRestaurant} = useGlobalContext();
 
     // TODO: show additional tags for deals, low delivery fee, freebies, and collect stamps
     return isDeliveryMode
@@ -54,7 +54,12 @@ export const Restaurant = (restaurant) => {
                 </div>
             </div>
         </div>
-    : <div data-testid="restaurant" className='restaurant-item pickup-mode'>
+    : <div
+            className='restaurant-item pickup-mode'
+            onMouseEnter={() => console.log(key)}
+            onMouseLeave={() => setHoveredRestaurant(null)}
+            data-testid="restaurant"
+        >
             <div className='restaurant-item-logo pickup-element'>
                 <img className='flex' src={restaurant.logoUrl} alt="cover" data-testid="restaurant-logo"/>
             </div>

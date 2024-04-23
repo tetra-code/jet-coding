@@ -5,12 +5,19 @@ import {Restaurant} from './Restaurant'
 import {useGlobalContext} from "../utils/context";
 import {SetCenterOnNewSearch} from "./SetCenterOnNewSearch";
 import {getRestaurantAddrAsString} from "../utils/util"
-import DefaultIcon from "./LeafletMarker";
+import { DefaultIcon, HighlightedIcon } from "./LeafletMapIcon";
 import "./RestaurantList.css";
 
 
 export const RestaurantList = () => {
-    const {restaurants, resultTitle, searchTerm, isDeliveryMode, postCodeResult} = useGlobalContext();
+    const {
+        restaurants,
+        resultTitle,
+        searchTerm,
+        isDeliveryMode,
+        postCodeResult,
+        hoveredRestaurant
+    } = useGlobalContext();
 
     const newCenter = restaurants.length > 0
         ? [postCodeResult.latitude, postCodeResult.longitude]
@@ -28,13 +35,16 @@ export const RestaurantList = () => {
 
     // TODO: perhaps loading state
 
-    // TODO: highlight maps marker when hover over item and other way around
     const resultContent = isDeliveryMode
         ? <div data-testid='delivery-mode-result' className='restaurant-list-content grid'>
             {
                 restaurants.map((restaurant, index) => {
                     return (
-                        <Restaurant data-testid='restaurant' key={index} {...restaurant} />
+                        <Restaurant
+                            data-testid='restaurant'
+                            key={index}
+                            {...restaurant}
+                        />
                     )
                 })
             }
@@ -44,7 +54,11 @@ export const RestaurantList = () => {
                 {
                     restaurants.map((restaurant, index) => {
                         return (
-                            <Restaurant data-testid='restaurant' key={index} {...restaurant} />
+                            <Restaurant
+                                key={index}
+                                {...restaurant}
+                                data-testid='restaurant'
+                            />
                         )
                     })
                 }
@@ -63,7 +77,11 @@ export const RestaurantList = () => {
                     restaurants.map((restaurant, index) => {
                         const coordinates = restaurant.address.location.coordinates
                         return (
-                            <Marker key={index} position={[coordinates[1], coordinates[0]]} icon={DefaultIcon}>
+                            <Marker
+                                key={index}
+                                position={[coordinates[1], coordinates[0]]}
+                                icon={index === hoveredRestaurant ? HighlightedIcon  : DefaultIcon}
+                            >
                                 <Popup>
                                     <strong>{restaurant.name}</strong><br/>
                                     {getRestaurantAddrAsString(restaurant.address)}
