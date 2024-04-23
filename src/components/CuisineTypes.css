@@ -20,37 +20,37 @@
 }
 
 .burgers-icon {
-    background: url("../../public/icons/burgers.webp") center/cover no-repeat;
+    background: url("../images/burgers.webp") center/cover no-repeat;
 }
 
 .chicken-icon {
-    background: url("../../public/icons/chicken.webp") center/cover no-repeat;
+    background: url("../images/chicken.webp") center/cover no-repeat;
 }
 
 .greek-icon {
-    background: url("../../public/icons/greek.webp") center/cover no-repeat;
+    background: url("../images/greek.webp") center/cover no-repeat;
 }
 
 .chinese-icon {
-    background: url("../../public/icons/chinese.png") center/cover no-repeat;
+    background: url("../images/chinese.png") center/cover no-repeat;
 }
 
 .kebab-icon {
-    background: url("../../public/icons/kebab.png") center/cover no-repeat;
+    background: url("../images/kebab.png") center/cover no-repeat;
 }
 
 .sushi-icon {
-    background: url("../../public/icons/sushi.png") center/cover no-repeat;
+    background: url("../images/sushi.png") center/cover no-repeat;
 }
 
 .pizza-icon {
-    background: url("../../public/icons/pizza.png") center/cover no-repeat;
+    background: url("../images/pizza.png") center/cover no-repeat;
 }
 
 .groceries-icon {
-    background: url("../../public/icons/groceries.jpg") center/cover no-repeat;
+    background: url("../images/groceries.jpg") center/cover no-repeat;
 }
 
 .indian-icon {
-    background: url("../../public/icons/indian.webp") center/cover no-repeat;
+    background: url("../images/indian.webp") center/cover no-repeat;
 }
