@@ -46,11 +46,16 @@ Brief explanation of the frontend and a demo can be found [here](./frontend/READ
 ## Improvements
 Due to limited time to complete the assignment, the application has some limitations. Some of the improvements that can be made are:
 
-- Run application in production environment (e.g. the cloud)
-- Even though tests are provided, they can be expanded upon to cover more edge cases
+## Features
 - Cookies to store user preferences on the client side
-- Resolve dependency issues
 - Determine user location to provide more relevant restaurant results
 - More responsive changes to dimension resizing
 - Expand to other postcode searches (currently only works for UK postcodes)
 - More custom error pages/handling
+
+### Code
+- Run application in production environment (e.g. the cloud)
+- Even though tests are provided, they can be expanded upon to cover more edge cases
+- Resolve dependency issues
+
+
