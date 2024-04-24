@@ -11,7 +11,7 @@ jest.mock('../../src/utils/context', () => ({
         restaurants: [],
         resultTitle: '',
         searchTerm: 'searchTerm',
-        isDeliveryMode: 'delivery',
+        isDeliveryMode: true,
         postCodeResult: [],
         clickedRestaurant: 0,
         loading: false
@@ -70,7 +70,7 @@ describe('RestaurantList', () => {
             restaurants: [],
             resultTitle: '',
             searchTerm: '',
-            isDeliveryMode: 'delivery',
+            isDeliveryMode: true,
             postCodeResult: [],
             clickedRestaurant: 0,
             loading: false
@@ -88,7 +88,7 @@ describe('RestaurantList', () => {
             restaurants: [],
             resultTitle: '',
             searchTerm: 'something',
-            isDeliveryMode: 'delivery',
+            isDeliveryMode: true,
             postCodeResult: [],
             clickedRestaurant: 0,
             loading: false
@@ -109,7 +109,7 @@ describe('RestaurantList', () => {
             restaurants: [],
             resultTitle: '',
             searchTerm: 'something',
-            isDeliveryMode: 'delivery',
+            isDeliveryMode: true,
             postCodeResult: [],
             clickedRestaurant: 0,
             loading: false
@@ -131,7 +131,7 @@ describe('RestaurantList', () => {
             restaurants: [],
             resultTitle: '',
             searchTerm: 'something',
-            isDeliveryMode: 'delivery',
+            isDeliveryMode: false,
             postCodeResult: [],
             clickedRestaurant: 0,
             loading: false
@@ -151,7 +151,7 @@ describe('RestaurantList', () => {
             restaurants: [restaurant1],
             resultTitle: '',
             searchTerm: 'something',
-            isDeliveryMode: 'delivery',
+            isDeliveryMode: true,
             postCodeResult: [],
             clickedRestaurant: 0,
             loading: false
@@ -190,7 +190,10 @@ describe('RestaurantList', () => {
             restaurants: [restaurant1, restaurant2],
             resultTitle: '',
             searchTerm: 'something',
-            searchMode: 'delivery'
+            isDeliveryMode: true,
+            postCodeResult: [],
+            clickedRestaurant: 0,
+            loading: false
         }));
 
         render(

@@ -23,7 +23,7 @@ export const Restaurant = ({index, restaurant}) => {
                 </div>
             )}
             {isDeliveryMode && restaurant.cuisines.includes("Low Delivery Fee") && (
-                <div className="low-delivery-fee-tag flex flex-c text-center">
+                <div data-testid="low-delivery-fee" className="low-delivery-fee-tag flex flex-c text-center">
                     <span>Low Delivery Fee</span>
                 </div>
             )}
