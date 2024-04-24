@@ -2,6 +2,9 @@ import React from 'react';
 import { useGlobalContext } from '../utils/context';
 import "./Toggle.css";
 
+/**
+ * Returns a toggle switch that allows users to switch between delivery and pickup modes.
+ */
 const Toggle = () => {
     const {isDeliveryMode, setDeliveryMode} = useGlobalContext();
 

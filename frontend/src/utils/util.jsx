@@ -1,12 +1,17 @@
-/*  Receives list of unprocessed restaurant data from the API call.
-
-    First reduces cuisine dict attribute of each restaurant to a list of cuisine names.
-    Then filers out restaurants that don't include the specified cuisine type.
-    Additional filtering for restaurants that don't specify its availability nor delivery time.
-
-    If delivery mode, filter out restaurants not open for delivery and sort based on delivery lower range.
-    Else, filter out restaurants not open for collection (pickup) and sort based on distance.
-*/
+/**
+ * Receives list of unprocessed restaurant data from the API call.
+ *
+ * First reduces cuisine dict attribute of each restaurant to a list of cuisine names. Then filers out
+ * restaurants that don't include the specified cuisine type. Additional filtering for restaurants that don't
+ * specify its availability nor delivery time.
+ *
+ * If delivery mode, filter out restaurants not open for delivery and sort based on delivery lower range.
+ * Else, filter out restaurants not open for collection (pickup) and sort based on distance.
+ *
+ * @param rawRestaurantData     List of unprocessed restaurant data
+ * @param cuisineType           cuisine type the user is searching for
+ * @param isDeliveryMode        whether it is in delivery mode or not
+ */
 export const processRestaurants = (rawRestaurantData, cuisineType, isDeliveryMode) => {
     const reducedCuisineDataRestaurants = rawRestaurantData.map((r) => {
         return {
@@ -37,6 +42,11 @@ export const processRestaurants = (rawRestaurantData, cuisineType, isDeliveryMod
         .sort((r1, r2) => r1.driveDistanceMeters -  r2.driveDistanceMetersr);
 };
 
+/**
+ * Takes a dict of restaurant address and returns a string representation of the address.
+ *
+ * @param restaurantAddress     Dict of restaurant address
+ */
 export const getRestaurantAddrAsString = (restaurantAddress) => {
     const arr = [];
     if (restaurantAddress.firstLine !== "") {
@@ -51,6 +61,9 @@ export const getRestaurantAddrAsString = (restaurantAddress) => {
     return arr.join(", ");
 }
 
+/**
+ * Takes a list of restaurant cuisines and filters for actual cuisine types.
+ */
 export const getActualCuisinesAsString = (restaurantCuisines) => {
     return restaurantCuisines
         .filter(
@@ -62,6 +75,11 @@ export const getActualCuisinesAsString = (restaurantCuisines) => {
         .join(", ")
 }
 
+/**
+ * Takes a string and returns true if it is a valid UK postcode.
+ *
+ * @param searchTermStr         String value of the search term
+ */
 export const isValidUKPostcode = (searchTermStr) => {
     const trimmedSearchTerm = searchTermStr.replaceAll(' ', '')
     const regexString = "^([A-Za-z]{1,2}[0-9][A-Za-z0-9]?\\s?[0-9][A-Za-z]{2}|[Gg][Ii][Rr]\\s?0[Aa]{2})$";

@@ -2,6 +2,9 @@ import React from 'react';
 import { useGlobalContext } from '../utils/context';
 import "./CuisineTypes.css";
 
+/**
+ * Returns a list of cuisine types that can be used to filter restaurants
+ */
 const CuisineTypes = () => {
     const {setCuisineType} = useGlobalContext();
     const filterForCuisine = (cuisineType) => { setCuisineType(cuisineType) }

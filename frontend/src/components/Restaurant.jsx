@@ -1,15 +1,24 @@
 import React from 'react';
-import { getRestaurantAddrAsString, getActualCuisinesAsString } from "../utils/util";
 import { CiCircleChevDown } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdFastfood } from "react-icons/md";
-import "./RestaurantList.css"
 import {useGlobalContext} from "../utils/context";
+import { getRestaurantAddrAsString, getActualCuisinesAsString } from "../utils/util";
+import "./RestaurantList.css"
 
+/**
+ * Displays a single Restaurant component in the RestaurantList. Depending on whether it is in delivery or pickup mode,
+ * the returned component will have different styling and information displayed. Additionally, if in pickup mode,
+ * setClickedRestaurant will be called when the Restaurant component is clicked for custom marker in the map view.
+ *
+ * @param index         index of the Restaurant component in the RestaurantList
+ * @param restaurant    restaurant object containing restaurant details
+ */
 export const Restaurant = ({index, restaurant}) => {
     const {isDeliveryMode, setClickedRestaurant} = useGlobalContext();
 
+    // element to display offers available for the restaurant
     const offersElement =
         <div className="restaurant-item-offers">
             {restaurant.cuisines.includes("Deals") && (
@@ -69,7 +78,7 @@ export const Restaurant = ({index, restaurant}) => {
         </div>
         : <div
             className='restaurant-item pickup-mode'
-            onClick={() => { setClickedRestaurant(index) }}
+            onClick={() => { setClickedRestaurant(index) }}         // sets the current restaurant as clicked
             data-testid="restaurant"
         >
             {offersElement}

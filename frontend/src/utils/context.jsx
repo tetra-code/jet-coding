@@ -5,7 +5,13 @@ const AppContext = React.createContext();
 
 const proxyEndpoint = `http://localhost:8080/api`
 
-// re-renders whenever its state or props change, but doesn't mean actual DOM updated (minimize unnecessary updates)
+/**
+ * Returns the AppProvider component that provides the global context to all child components. Whenever its
+ * state or props change (e.g. searchTerm, cuisineType, isDeliveryMode), it re-renders and updates the child
+ * components. However, that doesn't mean the actual DOM is updated.
+ *
+ * @param children      the child components
+ */
 const AppProvider = ({children}) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [restaurants, setRestaurants] = useState([]);
@@ -16,7 +22,6 @@ const AppProvider = ({children}) => {
     const [clickedRestaurant, setClickedRestaurant] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    // ensures new instance of fetchRestaurant is called whenever it's created
     useEffect(() => {
         const fetchRestaurants = async() => {
             setLoading(true);
@@ -58,6 +63,7 @@ const AppProvider = ({children}) => {
         if (searchTerm !== "") {
             fetchRestaurants().then();
         }
+    // ensures new instance of fetchRestaurant is called whenever the following states change
     }, [searchTerm, cuisineType, isDeliveryMode]);
 
     return (

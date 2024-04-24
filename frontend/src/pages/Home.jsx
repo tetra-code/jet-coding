@@ -2,7 +2,10 @@ import React from 'react';
 import Header from '../header/Header'
 import { Outlet } from 'react-router-dom';
 
-// outlet component necessary to render child routes defined under Home route (e.g. restaurant route)
+/**
+ * Returns the Home component that contains the Header component and the Outlet component, which is needed to
+ * render child routes defined under the Home route (e.g. /restaurants route).
+ */
 const Home = () => {
     return (
         <main>

@@ -3,6 +3,9 @@ import SearchBar from "../components/SearchBar";
 import Toggle from "../components/Toggle";
 import "./Header.css";
 
+/**
+ * Returns the header component that contains the SearchBar and Toggle component.
+ */
 const Header = () => {
   return (
     <div className='holder'>

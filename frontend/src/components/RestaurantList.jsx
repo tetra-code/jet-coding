@@ -9,6 +9,11 @@ import { DefaultIcon, HighlightedIcon } from "./LeafletMapIcon";
 import Loader from './Loader'
 import "./RestaurantList.css";
 
+/**
+ * Displays a list of restaurants based on the search term and delivery mode. Depending on whether it is in delivery
+ * or pickup mode, the returned component will have different styling and information displayed. If delivery mode, jus
+ * a list of Restaurant components. Else, additional map view that pinpoints the restaurant's location.
+ */
 export const RestaurantList = () => {
     // re-rendered every time one of these changes
     const {
@@ -21,10 +26,9 @@ export const RestaurantList = () => {
         loading
     } = useGlobalContext();
 
-    // console.log("Restaurant list rendered")
-
     if (loading) return <Loader/>;
 
+    // changes center of the map to the valid postcode search or defaults to London if search term is invalid
     const newCenter = restaurants.length > 0
         ? [postCodeResult.latitude, postCodeResult.longitude]
         : [51.505, -0.09];
